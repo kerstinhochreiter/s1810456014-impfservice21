@@ -1,1 +1,2 @@
-<is-vaccination-list></is-vaccination-list>
+<is-vaccination-list *ngIf="listOn"></is-vaccination-list>
+<is-vaccination-details *ngIf="detailsOn" [vaccination]="vaccination"></is-vaccination-details>

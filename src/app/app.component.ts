@@ -1,4 +1,5 @@
 import { Component, VERSION } from "@angular/core";
+import { Vaccination } from "./shared/vaccination";
 
 @Component({
   selector: "is-root",
@@ -6,5 +7,18 @@ import { Component, VERSION } from "@angular/core";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent {
-  name = "Angular " + VERSION.major;
+  listOn = true;
+  detailsOn = false;
+  vaccination: Vaccination;
+
+  showList() {
+    this.listOn = true;
+    this.detailsOn = false;
+  }
+
+  showDetails(vaccination: Vaccination) {
+    this.vaccination = vaccination;
+    this.listOn = false;
+    this.detailsOn = true;
+  }
 }

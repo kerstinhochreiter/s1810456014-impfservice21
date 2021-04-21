@@ -1,3 +1,17 @@
-<p>
-vaccination-list works!
-</p>
+<div class="ui middle aligned selection divided list">
+  <!--book wird hier als parameter übergeben für book-list-item-->
+  <!--book wird hier als parameter übergeben für book-list-item-->
+  <!--Liste gehen wir durch und in der booklist wollen wir Book-items, immer wenn wir komponenten schachteln wollen, wollen wir für jedes buch ein item anlegen und details anzeigen
+  also wenn wir von einer kind-kompontente daten übergeben wollen
+  jeder a-Tag wird dann durch die kind-komponente ersetzt durch klasse
+  @Input in der kind-komponente(book-details) teilt der kind-komponente mit dass sie das übergeben kann-->
+
+
+  <a *ngFor="let vaccination of vaccinations" class="item is-vaccination-list-item" [vaccination]="vaccination">
+  </a>
+  <!--- <div *ngIf="!books" class="ui active dimmer">
+    <div class="ui large text loader">Daten werden geladen</div>
+  </div>
+  <p *ngIf="books && !books.length">Es wurden noch keine Bücher am Server eingetragen.</p>-->
+
+</div>
