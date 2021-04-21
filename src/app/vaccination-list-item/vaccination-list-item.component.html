@@ -1,12 +1,20 @@
-<div class="content">
-  <h2>vaccination list item</h2>
-  <div class="header">{{vaccination.date}}</div>
-  <div class="description"> {{vaccination.time}} </div>
-  <div class="metadata">
-    <span *ngFor="let user of vaccination.users; last as l">
-      {{ user.firstname }} {{ user.lastname }}<span *ngIf="!l">,
-      </span>
-    </span>
-  </div>
-  <div class="extra">Maximale Anzahl {{ vaccination.max_participants }}</div>
-</div>
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th>Datum</th>
+      <th>Uhrzeit</th>
+      <th>Maximale Teilnehmerzahl</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr>
+      <td data-label="Datum">{{vaccination.date}}</td>
+      <td data-label="Age">{{vaccination.time}}</td>
+      <td data-label="Job">{{ vaccination.max_participants }}</td>
+      <td data-label=""><button class="circular ui icon button">
+  <i class="icon settings"></i></button></td>
+    </tr>
+  </tbody>
+</table>

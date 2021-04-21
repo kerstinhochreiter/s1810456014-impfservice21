@@ -1,2 +1,11 @@
-<is-vaccination-list *ngIf="listOn"></is-vaccination-list>
-<is-vaccination-details *ngIf="detailsOn" [vaccination]="vaccination"></is-vaccination-details>
+<div class="ui huge menu">
+  <a routerLink="vaccinations" routerLinkActive="active" class="item"><i class="syringe icon"></i>Impfservice</a>
+  <a routerLink="vaccination" routerLinkActive="active" class="item">Impfungdetail</a>
+  <div class="right menu">
+    <div class="item">
+      <a routerLink="login" routerLinkActive="active" class="ui primary button">Login</a>
+    </div>
+  </div>
+</div>
+<!--nach diesem Tag schaut der Router und wenn er eine gefunden hat ersetzt er Tag durch Komponente-->
+<router-outlet></router-outlet>
