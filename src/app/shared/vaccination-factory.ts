@@ -8,7 +8,9 @@ export class VaccinationFactory {
       0, //max_participants
       new Date(), //date
       "", //time
-      0, //location_id
+      [
+        { id: 0, plz: 0, city: "", l_street: "", l_number: "", description: "" }
+      ], //location_id
       [
         {
           id: 0,
@@ -29,7 +31,6 @@ export class VaccinationFactory {
       ]
     );
   }
-
   //gibt vacc zurück
   static fromObject(rawVaccination: any): Vaccination {
     return new Vaccination(

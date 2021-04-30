@@ -4,11 +4,13 @@
 
 
     <tr>
-      <td data-label="Datum">{{vaccination.date}}</td>
+      <td data-label="Datum">{{vaccination.date | date:'EEEE, dd.MM.yyyy'}}</td>
       <td data-label="Age">{{vaccination.time}}</td>
       <td data-label="Job">{{ vaccination.max_participants }}</td>
-      <td data-label=""><button class="circular ui icon button">
-  <i class="icon settings"></i></button></td>
+
+      <!-- <td data-label=""><button class="circular ui icon button">
+
+  <i class="icon settings"></i></button></td>-->
     </tr>
 
   </tbody>
