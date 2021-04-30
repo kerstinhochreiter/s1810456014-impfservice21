@@ -7,7 +7,6 @@ export class Location {
     public city: string,
     public l_street: string,
     public l_number: string,
-    public description: string,
-    public vaccinations?: Vaccination[]
+    public description: string
   ) {}
 }

@@ -4,9 +4,15 @@
 
 
     <tr>
+      <td data-label="Datum">{{vaccination.location.city}} | {{vaccination.location.description}} </td>
       <td data-label="Datum">{{vaccination.date | date:'EEEE, dd.MM.yyyy'}}</td>
       <td data-label="Age">{{vaccination.time}}</td>
       <td data-label="Job">{{ vaccination.max_participants }}</td>
+<span *ngFor="let user of vaccination.users; last as l">
+      {{ user.firstname }} {{ user.lastname }}<span *ngIf="!l">,
+      </span>
+    </span>
+
 
       <!-- <td data-label=""><button class="circular ui icon button">
 

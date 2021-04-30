@@ -1,6 +1,5 @@
 import { Time } from "@angular/common";
 import { Vaccination } from "./vaccination";
-export { Vaccination } from "./vaccination";
 
 export class User {
   constructor(
