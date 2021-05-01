@@ -8,27 +8,25 @@
 
 <h2>Impftermine</h2>
 
-<!--<table class="ui celled table">
-    <thead>
-      <tr>
-        <th>Datum</th>
-        <th>Uhrzeit</th>
-        <th>Teilnehmer</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>-->
-<a *ngFor="let vaccination of vaccinations" class="item is-vaccination-list-item" [vaccination]="vaccination">
-  <!--[routerLink]="vaccination.id"-->
+<table class="ui selectable celled table">
+  <thead>
+    <tr>
+      <th>Ort</th>
+      <th>Datum</th>
+      <th>Uhrzeit</th>
+      <th>Maximale Teilnehmeranzahl</th>
+    </tr>
 
-
-</a>
-
-<!--</tbody>
+  </thead>
+  <tbody>
+    <tr *ngFor="let vaccination of vaccinations" class="item is-vaccination-list-item" [vaccination]="vaccination"
+      [routerLink]="['./', vaccination.id]"></tr>
+  </tbody>
+  <!--</tbody>
   </table>-->
-<!--- <div *ngIf="!books" class="ui active dimmer">
+  <!--- <div *ngIf="!books" class="ui active dimmer">
     <div class="ui large text loader">Daten werden geladen</div>
   </div>
   <p *ngIf="books && !books.length">Es wurden noch keine Bücher am Server eingetragen.</p>-->
 
-<!--</div>-->
+  <!--</div>-->

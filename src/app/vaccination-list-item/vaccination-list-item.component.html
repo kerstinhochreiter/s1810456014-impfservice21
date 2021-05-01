@@ -1,23 +1,15 @@
-<table class="ui celled table">
 
-  <tbody>
+  <td data-label="Ort">{{vaccination.location.city}} | {{vaccination.location.description}} </td>
+  <td data-label="Datum">{{vaccination.date | date:'EEEE, dd.MM.yyyy'}}</td>
+  <td data-label="Uhrzeit">{{vaccination.time}}</td>
+  <td data-label="Teilnehmer">{{ vaccination.max_participants }}</td>
 
-
-    <tr>
-      <td data-label="Datum">{{vaccination.location.city}} | {{vaccination.location.description}} </td>
-      <td data-label="Datum">{{vaccination.date | date:'EEEE, dd.MM.yyyy'}}</td>
-      <td data-label="Age">{{vaccination.time}}</td>
-      <td data-label="Job">{{ vaccination.max_participants }}</td>
-<span *ngFor="let user of vaccination.users; last as l">
+<!--<span *ngFor="let user of vaccination.users; last as l">
       {{ user.firstname }} {{ user.lastname }}<span *ngIf="!l">,
       </span>
-    </span>
+    </span>-->
 
 
-      <!-- <td data-label=""><button class="circular ui icon button">
+<!-- <td data-label=""><button class="circular ui icon button">
 
   <i class="icon settings"></i></button></td>-->
-    </tr>
-
-  </tbody>
-</table>

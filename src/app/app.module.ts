@@ -1,6 +1,6 @@
 import { LOCALE_ID, NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import localeDe from "@angular/common/locales/de";
 
 import { AppComponent } from "./app.component";
@@ -17,7 +17,7 @@ import { VaccinationFormComponent } from "./vaccination-form/vaccination-form.co
 registerLocaleData(localeDe);
 
 @NgModule({
-  imports: [BrowserModule, FormsModule, AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, FormsModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule],
   declarations: [
     AppComponent,
     HelloComponent,

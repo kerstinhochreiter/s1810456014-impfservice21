@@ -27,6 +27,28 @@ export class VaccinationStoreService {
       .pipe(catchError(this.errorHandler));
   }
 
+  remove(id: number): Observable<any> {
+    return this.http
+      .delete(`${this.api}/vaccination/${id}`)
+      .pipe(retry(3))
+      .pipe(catchError(this.errorHandler));
+  }
+
+  /** 
+  create(vaccination: Vaccination): Observable<any> {
+    return this.http
+      .post(`${this.api}/vaccination`, vaccination)
+      .pipe(retry(3))
+      .pipe(catchError(this.errorHandler));
+  }
+
+  update(vaccination: Vaccination): Observable<any> {
+    return this.http
+      .put(`${this.api}/vaccination/${vaccination.id}`, vaccination)
+      .pipe(retry(3))
+      .pipe(catchError(this.errorHandler));
+  }**/
+
   private errorHandler(error: Error | any) {
     return throwError(error);
   }
