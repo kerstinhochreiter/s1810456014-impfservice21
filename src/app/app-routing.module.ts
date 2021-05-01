@@ -7,7 +7,7 @@ import { LoginComponent } from "./login/login.component";
 const routes: Routes = [
   { path: "", redirectTo: "vaccinations", pathMatch: "full" },
   { path: "vaccinations", component: VaccinationListComponent },
-  { path: "vaccination/:id", component: VaccinationDetailsComponent },
+  { path: "vaccinations/:id", component: VaccinationDetailsComponent },
   { path: "login", component: LoginComponent }
 ];
 

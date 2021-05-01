@@ -13,6 +13,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { LoginComponent } from "./login/login.component";
 import { HttpClientModule } from "@angular/common/http";
 import { registerLocaleData } from "@angular/common";
+import { VaccinationFormComponent } from "./vaccination-form/vaccination-form.component";
 registerLocaleData(localeDe);
 
 @NgModule({
@@ -23,12 +24,16 @@ registerLocaleData(localeDe);
     VaccinationListComponent,
     VaccinationListItemComponent,
     VaccinationDetailsComponent,
-    LoginComponent
+    LoginComponent,
+    VaccinationFormComponent
   ],
   bootstrap: [AppComponent],
-  providers: [VaccinationStoreService,
-  {
-    provide: LOCALE_ID, useValue: 'de'
-  }]
+  providers: [
+    VaccinationStoreService,
+    {
+      provide: LOCALE_ID,
+      useValue: "de"
+    }
+  ]
 })
 export class AppModule {}
