@@ -19,6 +19,14 @@ export class VaccinationStoreService {
       .pipe(catchError(this.errorHandler));
   }
 
+  getSingle(id: number): Observable<Vaccination> {
+    //array enthält Buch-Objekte
+    return this.http
+      .get<Vaccination>(`${this.api}/vaccination/${id}`)
+      .pipe(retry(3))
+      .pipe(catchError(this.errorHandler));
+  }
+
   private errorHandler(error: Error | any) {
     return throwError(error);
   }
