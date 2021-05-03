@@ -10,7 +10,7 @@ export class VaccinationListItemComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    console.log(this.vaccination.location);
-    console.log(this.vaccination.users);
+    //console.log(this.vaccination.location);
+    //console.log(this.vaccination.users);
   }
 }
