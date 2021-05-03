@@ -2,10 +2,13 @@
 <td data-label="Datum">{{vaccination.date | date:'EEEE, dd.MM.yyyy'}}</td>
 <td data-label="Age">{{vaccination.time}}</td>
 <td data-label="Job">{{ vaccination.max_participants }}</td>
+<h1>Das sind meine User: </h1>
 <span *ngFor="let user of vaccination.users; last as l">
       {{ user.firstname }} {{ user.lastname }}<span *ngIf="!l">,
       </span>
 </span>
+<br>
+<br>
 
 <button routerLink=".." class="ui blue button tiny">Zurück zur Übersicht</button>
 
