@@ -19,6 +19,14 @@ export class VaccinationStoreService {
       .pipe(catchError(this.errorHandler));
   }
 
+  getAllLocations(): Observable<Array<Location>> {
+    //array enthält Buch-Objekte
+    return this.http
+      .get<Array<Location>>(`${this.api}/locations`)
+      .pipe(retry(3))
+      .pipe(catchError(this.errorHandler));
+  }
+
   getSingle(id: number): Observable<Vaccination> {
     //array enthält Buch-Objekte
     return this.http
@@ -34,10 +42,9 @@ export class VaccinationStoreService {
       .pipe(catchError(this.errorHandler));
   }
 
-  /** 
   create(vaccination: Vaccination): Observable<any> {
     return this.http
-      .post(`${this.api}/vaccination`, vaccination)
+      .post(`${this.api}/vaccination/save`, vaccination)
       .pipe(retry(3))
       .pipe(catchError(this.errorHandler));
   }
@@ -47,7 +54,7 @@ export class VaccinationStoreService {
       .put(`${this.api}/vaccination/${vaccination.id}`, vaccination)
       .pipe(retry(3))
       .pipe(catchError(this.errorHandler));
-  }**/
+  }
 
   private errorHandler(error: Error | any) {
     return throwError(error);

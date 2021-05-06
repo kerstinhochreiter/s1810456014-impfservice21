@@ -1,33 +1,40 @@
-<!--<h1>Impftermin hinzufügen</h1>
-<form  class="ui large form" [formGroup]="vaccinationForm" (ngSubmit)="submitForm()">
-<input type="hidden" name="id">
-<div class="field">
-  <label>Datum</label>
-  <input formControlName="date">
-  <div *ngIf="errors.title" class="ui negative message"> {{ errors.title }} </div>
-</div>
-<div class="field">
-  <label>Untertitel</label>
-  <input formControlName="subtitle">
-</div>
-<div class="field" [class.disabled]="isUpdatingBook">
-  <label>ISBN-Nummer</label>
-  <input formControlName="isbn">
-  <div *ngIf="errors.isbn" class="ui negative message">{{ errors.isbn }} </div>
-</div>
-<div class="field">
-  <label>Erscheinungsdatum</label>
-  <input type="date" formControlName="published">
-  <div *ngIf="errors.published" class="ui negative message">{{ errors.published }}</div>
-</div>
-<div class="field">
-  <label>Beschreibung</label>
-  <textarea formControlName="description" rows="3"></textarea>
-</div>
-<div class="field">
-  <label>Rating</label>
-  <input type="number" formControlName="rating">
-  <div *ngIf="errors.rating" class="ui negative message">{{ errors.rating }}</div>
-</div>
-<button type="submit" class="ui button" [disabled]="bookForm.invalid">Speichern</button>
-</form>-->
+<h1>Impftermin hinzufügen</h1>
+<form class="ui large form" [formGroup]="vaccinationForm" (ngSubmit)="submitForm()">
+
+  <input type="hidden" name="id">
+
+  <div class="field">
+    <label>Maximale Teilnehmeranzahl</label>
+    <input formControlName="max_participants">
+    <div *ngIf="errors.max_participants" class="ui negative message">{{
+      errors.max_participants }}</div>
+  </div>
+
+  <div class="field">
+    <label>Datum</label>
+    <input type="date" formControlName="date">
+    <div *ngIf="errors.date" class="ui negative message">{{
+      errors.date }}</div>
+  </div>
+
+  <div class="field">
+    <label>Uhrzeit</label>
+    <input type="time" formControlName="time">
+    <div *ngIf="errors.time" class="ui negative message">{{
+      errors.time }}</div>
+  </div>
+
+  <!--(change)="selectChangeHandler($event)"-->
+  <!-- <div class="field">
+    <label>Ort</label>
+    <select class="ui dropdown">
+      <option *ngFor="let location of locations" [value]="location.id">
+      {{location.city}}</option>
+    </select>
+  </div>
+  <br>-->
+
+  <button type="submit" class="ui green button"
+[disabled]="vaccinationForm.invalid">Speichern</button>
+
+</form>
