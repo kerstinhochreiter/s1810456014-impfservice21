@@ -12,12 +12,19 @@ import { VaccinationStoreService } from "./shared/vaccination-store.service";
 import { AppRoutingModule } from "./app-routing.module";
 import { LoginComponent } from "./login/login.component";
 import { HttpClientModule } from "@angular/common/http";
-import { registerLocaleData } from "@angular/common";
+import { DatePipe, registerLocaleData } from "@angular/common";
 import { VaccinationFormComponent } from "./vaccination-form/vaccination-form.component";
+import { LocationStoreService } from "./shared/location-store.service";
 registerLocaleData(localeDe);
 
 @NgModule({
-  imports: [BrowserModule, FormsModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule
+  ],
   declarations: [
     AppComponent,
     HelloComponent,
@@ -30,6 +37,7 @@ registerLocaleData(localeDe);
   bootstrap: [AppComponent],
   providers: [
     VaccinationStoreService,
+    LocationStoreService,
     {
       provide: LOCALE_ID,
       useValue: "de"

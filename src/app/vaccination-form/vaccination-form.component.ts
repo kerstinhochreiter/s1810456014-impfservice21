@@ -6,28 +6,35 @@ import { VaccinationStoreService } from "../shared/vaccination-store.service";
 import { Vaccination } from "../shared/vaccination";
 import { Location } from "../shared/location";
 import { VaccinationFormErrorMessages } from "./book-form-error-messages";
+import { LocationStoreService } from "../shared/location-store.service";
+
 
 @Component({
   selector: "is-vaccination-form",
   templateUrl: "./vaccination-form.component.html"
 })
 export class VaccinationFormComponent implements OnInit {
-  // @Input() locations: Location;
-  //locations: Location[];
+  //@Input() locations: Location;
+  locations: Location[];
   vaccinationForm: FormGroup;
   //liefer einen leeren Impftermin
   vaccination = VaccinationFactory.empty();
   isUpdatingVaccination = false;
+  datePipeTime: string;
+  datePipeDate: string;
   //assoziatives Array mit string als wert und anfangs ist es leer
   errors: { [key: string]: string } = {};
 
   constructor(
     private fb: FormBuilder,
     private is: VaccinationStoreService,
+    private is_loc: LocationStoreService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
   ngOnInit() {
+    this.is_loc.getAll().subscribe(res => (this.locations = res));
+
     //is der Parameter ID bei der URL angehängt --> wird es gerade upgedated
     const id = this.route.snapshot.params["id"];
     if (id) {
@@ -42,12 +49,12 @@ export class VaccinationFormComponent implements OnInit {
   }
 
   initVaccination() {
-    //this.is.getAllLocations().subscribe(res => (this.locations = res));
+
     this.vaccinationForm = this.fb.group({
       id: this.vaccination.id,
       //vorgefertigter Validator
-      date: [this.vaccination.date, Validators.required],
-      time: [this.vaccination.time, Validators.required],
+      date: [this.datePipeDate, Validators.required],
+      time: [this.datePipeTime, Validators.required],
       max_participants: [
         this.vaccination.max_participants,
         [Validators.required, Validators.minLength(1)]
@@ -86,7 +93,7 @@ export class VaccinationFormComponent implements OnInit {
     const updatedVaccination: Vaccination = VaccinationFactory.fromObject(
       this.vaccinationForm.value
     );
-    console.log(this.vaccinationForm.value);
+
 
     if (this.isUpdatingVaccination) {
       this.is.update(updatedVaccination).subscribe(res => {

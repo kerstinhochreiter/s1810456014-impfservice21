@@ -1,11 +1,17 @@
-<div class="ui secondary pointing menu">
-  <a routerLink="vaccinations" routerLinkActive="active" class="item"><i class="syringe icon"></i>Impfservice</a>
-  <a routerLink="admin" routerLinkActive="active" class="item"><i class="add icon"></i>Impftermin hinzufügen</a>
-  <div class="right menu">
-    <div class="item">
-      <a routerLink="login" routerLinkActive="active">Login</a>
-    </div>
-  </div>
-</div>
 <!--nach diesem Tag schaut der Router und wenn er eine gefunden hat ersetzt er Tag durch Komponente-->
-<router-outlet></router-outlet>
+<div class="ui grid">
+  <div class="two wide column"></div>
+  <div class="twelve wide column">
+    <div class="ui secondary pointing menu">
+      <a routerLink="vaccinations" routerLinkActive="active" class="item"><i class="syringe icon"></i>Impfservice</a>
+
+      <div class="right menu">
+        <a routerLink="admin" routerLinkActive="active" class="item"><i class="add icon"></i>Impftermin hinzufügen</a>
+        <a routerLink="login" routerLinkActive="active" class="item">Login</a>
+
+      </div>
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+  <div class="two wide column"></div>
+</div>

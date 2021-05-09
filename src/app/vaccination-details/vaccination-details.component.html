@@ -1,22 +1,52 @@
-<td data-label="Ort">{{vaccination.location.city}} | {{vaccination.location.description}} </td>
-<td data-label="Datum">{{vaccination.date | date:'EEEE, dd.MM.yyyy'}}</td>
-<td data-label="Age">{{vaccination.time}}</td>
-<td data-label="Job">{{ vaccination.max_participants }}</td>
-<h1>Das sind meine User: </h1>
-<span *ngFor="let user of vaccination.users; last as l">
-      {{ user.firstname }} {{ user.lastname }}<span *ngIf="!l">,
-      </span>
-</span>
+<button routerLink=".." class="ui black button tiny">Zurück zur Übersicht</button>
 <br>
 <br>
-
-<button routerLink=".." class="ui blue button tiny">Zurück zur Übersicht</button>
-
-<button class="ui tiny red labeled icon button" (click)="removeVaccination()">
+<div class="ui grid">
+  <div class="six wide column">
+    <div class="ui card">
+      <div class="content">
+        <div class="header">{{vaccination.location.city}} | {{vaccination.location.description}}</div>
+      </div>
+      <div class="content">
+        <h4 class="ui sub header">{{vaccination.date | date:'EEEE, dd.MM.yyyy'}}</h4>
+        <div class="ui small feed">
+          <div class="event">
+            <div class="content">
+              <div class="summary">
+                Maximale Anzahl: {{ vaccination.max_participants }}
+              </div>
+            </div>
+          </div>
+          <div class="event">
+            <div class="content">
+              <div class="summary">
+                Uhrzeit: {{vaccination.time}}
+              </div>
+            </div>
+          </div>
+          <div class="event">
+            <div class="content">
+              <div class="summary">
+                Bereits angemeldet:<br>
+                <span *ngFor="let user of vaccination.users; last as l">
+                  {{ user.firstname }} {{ user.lastname }}<span *ngIf="!l"><br>
+                </span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="extra content">
+        <button class="ui tiny red labeled icon button" (click)="removeVaccination()">
   <i class="remove icon"></i>
-  Impftermin löschen
+  Löschen
 </button>
 
-<a class="ui tiny yellow labeled icon button" [routerLink]="['../../admin', vaccination.id]">
-  <i class="write icon"></i>
-  Impftermin bearbeiten</a>
+        <a class="ui tiny yellow labeled icon button" [routerLink]="['../../admin', vaccination.id]">
+          <i class="write icon"></i>
+          Bearbeiten</a>
+      </div>
+    </div>
+  </div>
+</div>

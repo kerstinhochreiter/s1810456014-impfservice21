@@ -11,7 +11,7 @@
   </div>
 
   <div class="field">
-    <label>Datum</label>
+    <label>Datum & Uhrzeit</label>
     <input type="date" formControlName="date">
     <div *ngIf="errors.date" class="ui negative message">{{
       errors.date }}</div>
@@ -24,15 +24,16 @@
       errors.time }}</div>
   </div>
 
+
   <!--(change)="selectChangeHandler($event)"-->
-  <!-- <div class="field">
+  <div class="field">
     <label>Ort</label>
     <select class="ui dropdown">
       <option *ngFor="let location of locations" [value]="location.id">
       {{location.city}}</option>
     </select>
   </div>
-  <br>-->
+  <br>
 
   <button type="submit" class="ui green button"
 [disabled]="vaccinationForm.invalid">Speichern</button>

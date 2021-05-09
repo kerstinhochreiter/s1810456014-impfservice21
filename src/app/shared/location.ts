@@ -6,7 +6,7 @@ export class Location {
     public plz: number,
     public city: string,
     public l_street: string,
-    public l_number: string,
+    public l_number: number,
     public description: string
   ) {}
 }

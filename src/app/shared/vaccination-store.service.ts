@@ -19,14 +19,6 @@ export class VaccinationStoreService {
       .pipe(catchError(this.errorHandler));
   }
 
-  getAllLocations(): Observable<Array<Location>> {
-    //array enthält Buch-Objekte
-    return this.http
-      .get<Array<Location>>(`${this.api}/locations`)
-      .pipe(retry(3))
-      .pipe(catchError(this.errorHandler));
-  }
-
   getSingle(id: number): Observable<Vaccination> {
     //array enthält Buch-Objekte
     return this.http

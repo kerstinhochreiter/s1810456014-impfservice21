@@ -10,7 +10,7 @@ export class VaccinationFactory {
       new Date(),
       new Date(),
       0,
-      { id: 0, plz: 0, city: "", l_street: "", l_number: "", description: "" },
+      { id: 0, plz: 0, city: "", l_street: "", l_number: 0, description: "" },
       [
         {
           id: 0,
