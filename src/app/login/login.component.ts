@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
     if (val.username && val.password) {
       this.authService.login(val.username, val.password).subscribe(res => {
         this.authService.setLocalStorage((res as Response).access_token);
+        this.router.navigateByUrl('/');
       });
     }
   }
