@@ -20,9 +20,11 @@ export class AuthenticationService {
       password: password
     });
   }
-  public getCurrentUserId() {
+
+  public getCurrentUser() {
     return Number.parseInt(localStorage.getItem('id'));
   }
+
 
   public setLocalStorage(token: string) {
     console.log('Storing token');

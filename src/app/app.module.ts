@@ -17,6 +17,7 @@ import { VaccinationFormComponent } from './vaccination-form/vaccination-form.co
 import { LocationStoreService } from './shared/location-store.service';
 import { AuthenticationService } from './shared/authentication.service';
 import { TokenInterceptorService } from './shared/token-interceptor.service';
+import { UserStoreService } from './shared/user-store.service';
 registerLocaleData(localeDe);
 
 @NgModule({
@@ -40,7 +41,9 @@ registerLocaleData(localeDe);
   providers: [
     VaccinationStoreService,
     LocationStoreService,
-    AuthenticationService, {
+    UserStoreService,
+    AuthenticationService,
+    {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
       multi: true
