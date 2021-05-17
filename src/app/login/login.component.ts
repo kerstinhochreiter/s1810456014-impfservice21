@@ -1,35 +1,35 @@
-import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
-//import { AuthenticationService } from "../shared/VaccinationStoreService.service";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthenticationService } from '../shared/authentication.service';
 
 interface Response {
   access_token: string;
 }
 @Component({
-  selector: "is-login",
-  templateUrl: "./login.component.html"
+  selector: 'is-login',
+  templateUrl: './login.component.html'
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   constructor(
     private fb: FormBuilder,
-    private router: Router
-  ) // private authService: AuthenticationService
-  {}
+    private router: Router,
+    public authService: AuthenticationService
+  ) {}
 
   ngOnInit() {
     this.loginForm = this.fb.group({
-      username: ["", Validators.required, Validators.email],
-      password: ["", Validators.required]
+      username: ['', Validators.required, Validators.email],
+      password: ['', Validators.required]
     });
   }
 
-  /*login() {
+  login() {
     const val = this.loginForm.value;
     if (val.username && val.password) {
-     this.authService.login(val.username, val.password).subscribe(res => {
-       this.authService.setLocalStorage((res as Response).access_token);
+      this.authService.login(val.username, val.password).subscribe(res => {
+        this.authService.setLocalStorage((res as Response).access_token);
       });
     }
   }
@@ -40,5 +40,5 @@ export class LoginComponent implements OnInit {
 
   logout() {
     this.authService.logout();
-  }*/
+  }
 }
