@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AuthenticationService } from '../shared/authentication.service';
 import { User } from '../shared/user';
 import { UserStoreService } from '../shared/user-store.service';
@@ -12,6 +12,10 @@ import { VaccinationStoreService } from '../shared/vaccination-store.service';
 export class VaccinationListComponent implements OnInit {
   firstname: string = '';
   vaccinations: Vaccination[];
+  public userId;
+  public admin;
+  isadmin: boolean = false;
+  @Input() user: User;
   @Output() showDetailsEvent = new EventEmitter<Vaccination>();
 
   constructor(
@@ -24,7 +28,21 @@ export class VaccinationListComponent implements OnInit {
     this.showDetailsEvent.emit(vaccination);
   }
 
+  public getCurrentUser() {
+    return Number.parseInt(localStorage.getItem('id'));
+  }
+
   ngOnInit() {
     this.is.getAll().subscribe(res => (this.vaccinations = res));
+    this.userId = Number.parseInt(localStorage.getItem('id'));
+    console.log('MEINE ID ====');
+    console.log(this.userId);
+    this.is_user.getSingle(this.userId).subscribe(user => (this.user = user));
+
+    if (localStorage.getItem('isadmin') == '1') {
+      this.isadmin = true;
+    }
+    console.log('IST ER ADMIN??');
+    console.log(localStorage.getItem('isadmin'));
   }
 }

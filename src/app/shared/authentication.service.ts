@@ -7,6 +7,7 @@ interface Token {
   exp: number;
   user: {
     id: string;
+    isadmin: string;
   };
 }
 @Injectable()
@@ -21,11 +22,6 @@ export class AuthenticationService {
     });
   }
 
-  public getCurrentUser() {
-    return Number.parseInt(localStorage.getItem('id'));
-  }
-
-
   public setLocalStorage(token: string) {
     console.log('Storing token');
     console.log(jwt_decode(token));
@@ -34,11 +30,13 @@ export class AuthenticationService {
     console.log(decodedToken.user.id);
     localStorage.setItem('token', token);
     localStorage.setItem('id', decodedToken.user.id);
+    localStorage.setItem('isadmin', decodedToken.user.isadmin);
   }
   logout() {
     this.http.post(`${this.api}/logout`, {});
     localStorage.removeItem('token');
     localStorage.removeItem('id');
+    localStorage.removeItem('isadmin');
     console.log('logged out');
   }
   public isLoggedIn() {

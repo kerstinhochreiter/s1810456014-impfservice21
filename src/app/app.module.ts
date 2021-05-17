@@ -18,6 +18,7 @@ import { LocationStoreService } from './shared/location-store.service';
 import { AuthenticationService } from './shared/authentication.service';
 import { TokenInterceptorService } from './shared/token-interceptor.service';
 import { UserStoreService } from './shared/user-store.service';
+import { JwtInterceptorService } from './shared/jwt.interceptor.service';
 registerLocaleData(localeDe);
 
 @NgModule({
@@ -46,6 +47,11 @@ registerLocaleData(localeDe);
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptorService,
       multi: true
     },
     {

@@ -1,16 +1,19 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { Vaccination } from "../shared/vaccination";
+import { Component, Input, OnInit } from '@angular/core';
+import { UserStoreService } from '../shared/user-store.service';
+import { Vaccination } from '../shared/vaccination';
 
 @Component({
-  selector: "tr.is-vaccination-list-item",
-  templateUrl: "./vaccination-list-item.component.html"
+  selector: 'tr.is-vaccination-list-item',
+  templateUrl: './vaccination-list-item.component.html'
 })
 export class VaccinationListItemComponent implements OnInit {
+ 
   @Input() vaccination: Vaccination;
-  constructor() {}
+  constructor(is_user: UserStoreService) {}
 
   ngOnInit() {
     //console.log(this.vaccination.location);
     //console.log(this.vaccination.users);
+    
   }
 }
