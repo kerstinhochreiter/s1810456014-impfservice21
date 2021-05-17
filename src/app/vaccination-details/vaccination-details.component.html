@@ -2,7 +2,7 @@
 <br>
 <br>
 <div class="ui grid">
-  <div class="six wide column">
+  <div class="sixteen wide column">
     <div class="ui card">
       <div class="content">
         <div class="header">{{vaccination.location.city}} | {{vaccination.location.description}}</div>
@@ -24,17 +24,7 @@
               </div>
             </div>
           </div>
-          <div class="event">
-            <div class="content">
-              <div class="summary">
-                Bereits angemeldet:<br>
-                <span *ngFor="let user of vaccination.users; last as l">
-                  {{ user.firstname }} {{ user.lastname }}<span *ngIf="!l"><br>
-                </span>
-                </span>
-              </div>
-            </div>
-          </div>
+
         </div>
       </div>
       <div class="extra content">
@@ -50,3 +40,59 @@
     </div>
   </div>
 </div>
+
+<div *ngIf="!vaccination.users.length; else Show">
+  <p>Es haben sich noch keine Teilnehmer*innen angemeldet.</p>
+</div>
+<ng-template #Show>
+  <table class="ui selectable celled table">
+    <thead>
+      <tr>
+        <!--<th>Geschlecht</th>-->
+        <th>Name</th>
+        <th>Geburtsdatum</th>
+        <th>SVNR</th>
+        <th>Wohnort</th>
+        <th>Telefonnummer</th>
+        <th>E-Mail</th>
+        <th>Impfstatus</th>
+      </tr>
+
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of vaccination.users">
+        <!--<td data-label="Geschlecht">{{user.gender}}</td>-->
+        <td data-label="Name">{{user.firstname}} {{user .lastname}}</td>
+        <td data-label="Geburtsdatum">{{user.birth | date:' dd.MM.yyyy'}}</td>
+        <td data-label="SVNR">{{user.svnr}}</td>
+        <td data-label="Wohnort">{{user.street}} {{user.number}}</td>
+        <td data-label="Telefonnummer">{{user.phonenumber}}</td>
+        <td data-label="E-Mail">{{user.email}}</td>
+        <td data-label="Impfung" *ngIf="true">Geimpft</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<!--
+<div *ngIf="vacevent && !vacevent.users.length; else elseBlock">
+          <p><b>Angemeldete Teilnehmer*innen:</b> Es haben sich noch keine Teilnehmer*innen angemeldet.</p>
+        </div>
+        <ng-template #elseBlock>
+          <br>
+          <p><b>Angemeldete Teilnehmer*innen:</b></p>
+          <form class="ui form" [formGroup]="userForm">
+            <div *ngFor="let user of vacevent.users">
+              <div class="inline fields">
+                <div class="three wide field">
+                  <label>{{user.firstName}} {{user.lastName}}</label>
+                  <select formControlName="vacStatus" class="floated" (change)="onChangeEdit($event, user)">
+                    <option value="false" [selected]="!user.vacStatus">nicht geimpft</option>
+                    <option value="true" [selected]="user.vacStatus">geimpft</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </form>
+        </ng-template>
+      </div>-->
