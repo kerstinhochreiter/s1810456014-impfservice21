@@ -27,7 +27,7 @@
 
         </div>
       </div>
-      <div class="extra content" *ngIf="user.isadmin == true">
+      <div class="extra content" *ngIf="user?.isadmin == true">
         <button class="ui tiny red labeled icon button" (click)="removeVaccination()">
   <i class="remove icon"></i>
   Löschen
@@ -40,40 +40,45 @@
     </div>
   </div>
 </div>
+<div *ngIf="user?.isadmin == true">
+  <div *ngIf="!vaccination.users.length; else Show">
+    <p>Es haben sich noch keine Teilnehmer*innen angemeldet.</p>
+  </div>
+  <ng-template #Show>
+    <h2>Übersicht der Teilnerhmer*innen</h2>
+    <table class="ui selectable celled table">
+      <thead>
+        <tr>
+          <!--<th>Geschlecht</th>-->
+          <th>Name</th>
+          <th>Geburtsdatum</th>
+          <th>SVNR</th>
+          <th>Wohnort</th>
+          <th>Telefonnummer</th>
+          <th>E-Mail</th>
+          <th>Impfstatus</th>
+        </tr>
 
-<div *ngIf="!vaccination.users.length; else Show">
-  <p>Es haben sich noch keine Teilnehmer*innen angemeldet.</p>
-</div>
-<ng-template #Show>
-  <h2>Übersicht der Teilnerhmer*innen</h2>
-  <table class="ui selectable celled table">
-    <thead>
-      <tr>
-        <!--<th>Geschlecht</th>-->
-        <th>Name</th>
-        <th>Geburtsdatum</th>
-        <th>SVNR</th>
-        <th>Wohnort</th>
-        <th>Telefonnummer</th>
-        <th>E-Mail</th>
-        <th>Impfstatus</th>
-      </tr>
-
-    </thead>
-    <tbody>
-      <tr *ngFor="let user of vaccination.users">
-        <!--<td data-label="Geschlecht">{{user.gender}}</td>-->
-        <td data-label="Name">{{user.firstname}} {{user .lastname}}</td>
-        <td data-label="Geburtsdatum">{{user.birth | date:' dd.MM.yyyy'}}</td>
-        <td data-label="SVNR">{{user.svnr}}</td>
-        <td data-label="Wohnort">{{user.street}} {{user.number}}</td>
-        <td data-label="Telefonnummer">{{user.phonenumber}}</td>
-        <td data-label="E-Mail">{{user.email}}</td>
-        <td data-label="Impfung"><select formControlName="hasvaccination" class="ui selection dropdown" (change)="editVaccinationStatus($event, user)">
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of vaccination.users">
+          <!--<td data-label="Geschlecht">{{user.gender}}</td>-->
+          <td data-label="Name">{{user.firstname}} {{user .lastname}}</td>
+          <td data-label="Geburtsdatum">{{user.birth | date:' dd.MM.yyyy'}}</td>
+          <td data-label="SVNR">{{user.svnr}}</td>
+          <td data-label="Wohnort">{{user.street}} {{user.number}}</td>
+          <td data-label="Telefonnummer">{{user.phonenumber}}</td>
+          <td data-label="E-Mail">{{user.email}}</td>
+          <td data-label="Impfung"><select formControlName="hasvaccination" class="ui selection dropdown" (change)="editVaccinationStatus($event, user)">
               <option value="true" [selected]="user.hasvaccination">Geimpft</option>
               <option value="false" [selected]="!user.hasvaccination">Nicht geimpft</option>
                   </select>
-      </tr>
-    </tbody>
-  </table>
-</ng-template>
+        </tr>
+      </tbody>
+    </table>
+  </ng-template>
+</div>
+
+<div *ngIf="user?.isadmin == false">
+  <button class="ui gray button tiny">Anmelden</button>
+</div>
