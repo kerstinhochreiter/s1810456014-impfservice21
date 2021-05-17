@@ -1,20 +1,21 @@
-import { LOCALE_ID, NgModule } from "@angular/core";
-import { BrowserModule } from "@angular/platform-browser";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import localeDe from "@angular/common/locales/de";
+import { LOCALE_ID, NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import localeDe from '@angular/common/locales/de';
 
-import { AppComponent } from "./app.component";
-import { HelloComponent } from "./hello.component";
-import { VaccinationListComponent } from "./vaccination-list/vaccination-list.component";
-import { VaccinationListItemComponent } from "./vaccination-list-item/vaccination-list-item.component";
-import { VaccinationDetailsComponent } from "./vaccination-details/vaccination-details.component";
-import { VaccinationStoreService } from "./shared/vaccination-store.service";
-import { AppRoutingModule } from "./app-routing.module";
-import { LoginComponent } from "./login/login.component";
-import { HttpClientModule } from "@angular/common/http";
-import { DatePipe, registerLocaleData } from "@angular/common";
-import { VaccinationFormComponent } from "./vaccination-form/vaccination-form.component";
-import { LocationStoreService } from "./shared/location-store.service";
+import { AppComponent } from './app.component';
+import { HelloComponent } from './hello.component';
+import { VaccinationListComponent } from './vaccination-list/vaccination-list.component';
+import { VaccinationListItemComponent } from './vaccination-list-item/vaccination-list-item.component';
+import { VaccinationDetailsComponent } from './vaccination-details/vaccination-details.component';
+import { VaccinationStoreService } from './shared/vaccination-store.service';
+import { AppRoutingModule } from './app-routing.module';
+import { LoginComponent } from './login/login.component';
+import { HttpClientModule } from '@angular/common/http';
+import { DatePipe, registerLocaleData } from '@angular/common';
+import { VaccinationFormComponent } from './vaccination-form/vaccination-form.component';
+import { LocationStoreService } from './shared/location-store.service';
+import { AuthenticationService } from './shared/authentication.service';
 registerLocaleData(localeDe);
 
 @NgModule({
@@ -38,9 +39,10 @@ registerLocaleData(localeDe);
   providers: [
     VaccinationStoreService,
     LocationStoreService,
+    AuthenticationService,
     {
       provide: LOCALE_ID,
-      useValue: "de"
+      useValue: 'de'
     }
   ]
 })
