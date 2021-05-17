@@ -27,7 +27,7 @@
 
         </div>
       </div>
-      <div class="extra content">
+      <div class="extra content" *ngIf="user.isadmin == true">
         <button class="ui tiny red labeled icon button" (click)="removeVaccination()">
   <i class="remove icon"></i>
   Löschen
@@ -45,6 +45,7 @@
   <p>Es haben sich noch keine Teilnehmer*innen angemeldet.</p>
 </div>
 <ng-template #Show>
+  <h2>Übersicht der Teilnerhmer*innen</h2>
   <table class="ui selectable celled table">
     <thead>
       <tr>
@@ -68,31 +69,11 @@
         <td data-label="Wohnort">{{user.street}} {{user.number}}</td>
         <td data-label="Telefonnummer">{{user.phonenumber}}</td>
         <td data-label="E-Mail">{{user.email}}</td>
-        <td data-label="Impfung" *ngIf="true">Geimpft</td>
+        <td data-label="Impfung"><select formControlName="hasvaccination" class="ui selection dropdown" (change)="editVaccinationStatus($event, user)">
+              <option value="true" [selected]="user.hasvaccination">Geimpft</option>
+              <option value="false" [selected]="!user.hasvaccination">Nicht geimpft</option>
+                  </select>
       </tr>
     </tbody>
   </table>
 </ng-template>
-
-<!--
-<div *ngIf="vacevent && !vacevent.users.length; else elseBlock">
-          <p><b>Angemeldete Teilnehmer*innen:</b> Es haben sich noch keine Teilnehmer*innen angemeldet.</p>
-        </div>
-        <ng-template #elseBlock>
-          <br>
-          <p><b>Angemeldete Teilnehmer*innen:</b></p>
-          <form class="ui form" [formGroup]="userForm">
-            <div *ngFor="let user of vacevent.users">
-              <div class="inline fields">
-                <div class="three wide field">
-                  <label>{{user.firstName}} {{user.lastName}}</label>
-                  <select formControlName="vacStatus" class="floated" (change)="onChangeEdit($event, user)">
-                    <option value="false" [selected]="!user.vacStatus">nicht geimpft</option>
-                    <option value="true" [selected]="user.vacStatus">geimpft</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-          </form>
-        </ng-template>
-      </div>-->

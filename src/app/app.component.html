@@ -6,9 +6,9 @@
       <a routerLink="vaccinations" routerLinkActive="active" class="item"><i class="syringe icon"></i>Impfservice</a>
 
       <div class="right menu">
-        <a routerLink="admin" routerLinkActive="active" class="item"><i class="add icon"></i>Impftermin hinzufügen</a>
+        <a *ngIf="user.isadmin == true" routerLink="admin" routerLinkActive="active"
+          class="item"><i class="add icon"></i>Impftermin hinzufügen</a>
         <a routerLink="login" routerLinkActive="active" class="item">{{getLoginStatus()}}</a>
-
       </div>
     </div>
     <router-outlet></router-outlet>

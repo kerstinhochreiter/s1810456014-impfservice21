@@ -39,10 +39,5 @@ export class VaccinationListComponent implements OnInit {
     console.log(this.userId);
     this.is_user.getSingle(this.userId).subscribe(user => (this.user = user));
 
-    if (localStorage.getItem('isadmin') == '1') {
-      this.isadmin = true;
-    }
-    console.log('IST ER ADMIN??');
-    console.log(localStorage.getItem('isadmin'));
   }
 }

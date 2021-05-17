@@ -4,12 +4,17 @@ import { Vaccination } from '../shared/vaccination';
 import { Location } from '../shared/location';
 import { VaccinationStoreService } from '../shared/vaccination-store.service';
 import { LocationStoreService } from '../shared/location-store.service';
+import { User } from '../shared/user';
+import { UserFactory } from '../shared/user-factory';
+import { UserStoreService } from '../shared/user-store.service';
 
 @Component({
   selector: 'is-vaccination-details',
   templateUrl: './vaccination-details.component.html'
 })
 export class VaccinationDetailsComponent implements OnInit {
+  public userId;
+  user: User = UserFactory.empty();
   @Input() vaccination: Vaccination;
   @Input() location: Location;
   @Output() showListEvent = new EventEmitter<any>();
@@ -17,6 +22,7 @@ export class VaccinationDetailsComponent implements OnInit {
   constructor(
     private is: VaccinationStoreService,
     private is_loc: LocationStoreService,
+    private is_user: UserStoreService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -29,6 +35,9 @@ export class VaccinationDetailsComponent implements OnInit {
     //gibt mir die genau dieses Buch mit der ISBN
     this.is_loc.getSingle(params['id']).subscribe(res => (this.location = res));
     this.is.getSingle(params['id']).subscribe(res => (this.vaccination = res));
+
+    this.userId = Number.parseInt(localStorage.getItem('id'));
+    this.is_user.getSingle(this.userId).subscribe(u => (this.user = u));
   }
 
   removeVaccination() {
@@ -40,5 +49,13 @@ export class VaccinationDetailsComponent implements OnInit {
         this.router.navigate(['../'], { relativeTo: this.route });
       });
     }
+  }
+
+  editVaccinationStatus(e: Event, user) {
+    let value = (<HTMLInputElement>e.target).value;
+    console.log(user);
+    this.user = user;
+    this.user.hasvaccination = Boolean(JSON.parse(value));
+    this.is_user.update(this.user).subscribe(res => {});
   }
 }
