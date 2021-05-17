@@ -1,17 +1,16 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { ActivatedRoute, Router } from "@angular/router";
-import { VaccinationFactory } from "../shared/vaccination-factory";
-import { VaccinationStoreService } from "../shared/vaccination-store.service";
-import { Vaccination } from "../shared/vaccination";
-import { Location } from "../shared/location";
-import { VaccinationFormErrorMessages } from "./book-form-error-messages";
-import { LocationStoreService } from "../shared/location-store.service";
-
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { VaccinationFactory } from '../shared/vaccination-factory';
+import { VaccinationStoreService } from '../shared/vaccination-store.service';
+import { Vaccination } from '../shared/vaccination';
+import { Location } from '../shared/location';
+import { VaccinationFormErrorMessages } from './vaccination-form-error-messages';
+import { LocationStoreService } from '../shared/location-store.service';
 
 @Component({
-  selector: "is-vaccination-form",
-  templateUrl: "./vaccination-form.component.html"
+  selector: 'is-vaccination-form',
+  templateUrl: './vaccination-form.component.html'
 })
 export class VaccinationFormComponent implements OnInit {
   //@Input() locations: Location;
@@ -36,7 +35,7 @@ export class VaccinationFormComponent implements OnInit {
     this.is_loc.getAll().subscribe(res => (this.locations = res));
 
     //is der Parameter ID bei der URL angehängt --> wird es gerade upgedated
-    const id = this.route.snapshot.params["id"];
+    const id = this.route.snapshot.params['id'];
     if (id) {
       this.isUpdatingVaccination = true;
       this.is.getSingle(id).subscribe(vaccination => {
@@ -48,8 +47,14 @@ export class VaccinationFormComponent implements OnInit {
     this.initVaccination();
   }
 
-  initVaccination() {
+  selectedCity: number;
 
+  selectChangeHandler(event: any) {
+    this.selectedCity = event.target.value;
+    console.log(this.selectedCity);
+  }
+
+  initVaccination() {
     this.vaccinationForm = this.fb.group({
       id: this.vaccination.id,
       //vorgefertigter Validator
@@ -58,7 +63,8 @@ export class VaccinationFormComponent implements OnInit {
       max_participants: [
         this.vaccination.max_participants,
         [Validators.required, Validators.minLength(1)]
-      ]
+      ],
+      location_id: this.selectedCity
     });
     this.vaccinationForm.statusChanges.subscribe(() => {
       this.updateErrorMessages();
@@ -94,16 +100,15 @@ export class VaccinationFormComponent implements OnInit {
       this.vaccinationForm.value
     );
 
-
     if (this.isUpdatingVaccination) {
       this.is.update(updatedVaccination).subscribe(res => {
-        this.router.navigate(["../../vaccinations", updatedVaccination.id], {
+        this.router.navigate(['../../vaccinations', updatedVaccination.id], {
           relativeTo: this.route
         });
       });
     } else {
       this.is.create(updatedVaccination).subscribe(res => {
-        this.router.navigate(["../vaccinations"], { relativeTo: this.route });
+        this.router.navigate(['../vaccinations'], { relativeTo: this.route });
       });
     }
   }

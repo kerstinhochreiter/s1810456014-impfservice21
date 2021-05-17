@@ -11,7 +11,7 @@
   </div>
 
   <div class="field">
-    <label>Datum & Uhrzeit</label>
+    <label>Datum</label>
     <input type="date" formControlName="date">
     <div *ngIf="errors.date" class="ui negative message">{{
       errors.date }}</div>
@@ -28,7 +28,7 @@
   <!--(change)="selectChangeHandler($event)"-->
   <div class="field">
     <label>Ort</label>
-    <select class="ui dropdown">
+    <select class="ui dropdown" (change)="selectChangeHandler($event)">
       <option *ngFor="let location of locations" [value]="location.id">
       {{location.city}}</option>
     </select>
