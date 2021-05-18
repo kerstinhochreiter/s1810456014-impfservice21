@@ -20,7 +20,7 @@
      (loginForm.get('password').dirty || loginForm.get('password').touched)" class="ui negative message">
         Passwort ist verpflichtend </div>
     </div>
-    <button type="submit" class="ui button" [disabled]="loginForm.invalid">Login</button>
+    <button type="submit" class="ui teal button" [disabled]="loginForm.invalid">Login</button>
   </form>
 </div>
 <div *ngIf="isLoggedIn()">

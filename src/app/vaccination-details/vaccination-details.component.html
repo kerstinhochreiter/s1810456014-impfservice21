@@ -75,16 +75,16 @@
 <br>
 <button routerLink=".." class="ui left floated labeled icon button tiny"><i class="left arrow icon"></i>Zurück zur Übersicht</button>
 <div *ngIf="user?.isadmin == true && authService.isLoggedIn()">
-        <button class="ui right floated tiny gray labeled icon button" (click)="removeVaccination()">
+  <button class="ui right floated tiny gray labeled icon button" (click)="removeVaccination()">
   <i class="remove icon"></i>
   Löschen
 </button>
 
-        <a class="ui right floated tiny gray labeled icon button" [routerLink]="['../../admin', vaccination.id]">
-          <i class="write icon"></i>
-          Bearbeiten</a>
-      </div>
-      <div *ngIf="user?.isadmin == false && authService.isLoggedIn()">
+  <a class="ui right floated tiny gray labeled icon button" [routerLink]="['../../admin', vaccination.id]">
+    <i class="write icon"></i>
+    Bearbeiten</a>
+</div>
+<div *ngIf="user?.isadmin == false && authService.isLoggedIn()">
   <button class="ui left floated gray button tiny">Anmelden</button>
 </div>
 <br>
