@@ -1,13 +1,13 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Observable, throwError } from "rxjs";
-import { catchError, retry } from "rxjs/operators";
-import { Location } from "./location";
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
+import { Location } from './location';
 
 @Injectable()
 export class LocationStoreService {
   private api =
-    "https://corana-impfservice21.s1810456014.student.kwmhgb.at/api";
+    'https://corana-impfservice21.s1810456014.student.kwmhgb.at/api';
 
   constructor(private http: HttpClient) {}
 

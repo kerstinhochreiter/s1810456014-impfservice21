@@ -24,7 +24,7 @@
 
         </div>
       </div>
-      <div class="extra content" *ngIf="user?.isadmin == true">
+      <div class="extra content" *ngIf="user?.isadmin == true && isLoggedIn()">
         <button class="ui tiny red labeled icon button" (click)="removeVaccination()">
   <i class="remove icon"></i>
   Löschen
@@ -38,7 +38,7 @@
   </div>
 </div>
 <br>
-<div *ngIf="user?.isadmin == true">
+<div *ngIf="user?.isadmin == true && isLoggedIn()">
   <div *ngIf="!vaccination.users.length; else Show">
     <p>Es haben sich noch keine Teilnehmer*innen angemeldet.</p>
   </div>

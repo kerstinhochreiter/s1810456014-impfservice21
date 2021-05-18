@@ -7,6 +7,7 @@ import { LocationStoreService } from '../shared/location-store.service';
 import { User } from '../shared/user';
 import { UserFactory } from '../shared/user-factory';
 import { UserStoreService } from '../shared/user-store.service';
+import { AuthenticationService } from '../shared/authentication.service';
 
 @Component({
   selector: 'is-vaccination-details',
@@ -24,7 +25,8 @@ export class VaccinationDetailsComponent implements OnInit {
     private is_loc: LocationStoreService,
     private is_user: UserStoreService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private authService: AuthenticationService
   ) {}
 
   //ngOnInit() {}
@@ -57,5 +59,9 @@ export class VaccinationDetailsComponent implements OnInit {
     this.user = user;
     this.user.hasvaccination = Boolean(JSON.parse(value));
     this.is_user.update(this.user).subscribe(res => {});
+  }
+
+  isLoggedIn() {
+    return this.authService.isLoggedIn();
   }
 }
