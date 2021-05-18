@@ -44,6 +44,7 @@ registerLocaleData(localeDe);
     LocationStoreService,
     UserStoreService,
     AuthenticationService,
+    DatePipe,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,

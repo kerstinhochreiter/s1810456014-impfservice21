@@ -7,6 +7,7 @@ import { Vaccination } from '../shared/vaccination';
 import { Location } from '../shared/location';
 import { VaccinationFormErrorMessages } from './vaccination-form-error-messages';
 import { LocationStoreService } from '../shared/location-store.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'is-vaccination-form',
@@ -15,6 +16,7 @@ import { LocationStoreService } from '../shared/location-store.service';
 export class VaccinationFormComponent implements OnInit {
   //@Input() locations: Location;
   locations: Location[];
+  id: number;
   vaccinationForm: FormGroup;
   //liefer einen leeren Impftermin
   vaccination = VaccinationFactory.empty();
@@ -23,13 +25,15 @@ export class VaccinationFormComponent implements OnInit {
   datePipeDate: string;
   //assoziatives Array mit string als wert und anfangs ist es leer
   errors: { [key: string]: string } = {};
+  selectedCity: number;
 
   constructor(
     private fb: FormBuilder,
     private is: VaccinationStoreService,
     private is_loc: LocationStoreService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private pipe: DatePipe
   ) {}
   ngOnInit() {
     this.is_loc.getAll().subscribe(res => (this.locations = res));
@@ -44,20 +48,28 @@ export class VaccinationFormComponent implements OnInit {
         this.initVaccination();
       });
     }
+
+    /* this.is_loc.getSingle(this.id).subscribe(vaclocation => {
+      this.locations = vaclocation;
+      this.initVaccination();
+    });*/
     this.initVaccination();
   }
-
-  selectedCity: number;
 
   selectChangeHandler(event: any) {
     this.selectedCity = event.target.value;
   }
 
   initVaccination() {
+    this.datePipeDate = this.pipe.transform(
+      this.vaccination.date,
+      'tt:mm:jjjj'
+    );
+    this.datePipeTime = this.pipe.transform(this.vaccination.time, 'HH:mm');
     this.vaccinationForm = this.fb.group({
       id: this.vaccination.id,
       //vorgefertigter Validator
-      date: [this.datePipeDate, Validators.required],
+      date: [this.vaccination.date, Validators.required],
       time: [this.datePipeTime, Validators.required],
       max_participants: [
         this.vaccination.max_participants,
@@ -94,10 +106,23 @@ export class VaccinationFormComponent implements OnInit {
   }
 
   submitForm() {
-    console.log(this.vaccinationForm.value);
+    /**let updatedVacevent:Vacevent = VaceventFactory.fromObject(this.vaceventForm.value);
+    console.log(this.vaceventForm.value.startTime);
+    const startTimeNew = moment(this.vaceventForm.value.date + ' ' + this.vaceventForm.value.startTime).toDate();
+    const endTimeNew = moment(this.vaceventForm.value.date + ' ' + this.vaceventForm.value.endTime).toDate();
+    updatedVacevent.startTime = startTimeNew; 
+    updatedVacevent.endTime = endTimeNew; 
+    **/
+
     const updatedVaccination: Vaccination = VaccinationFactory.fromObject(
       this.vaccinationForm.value
     );
+
+    this.is_loc
+      .getSingle(this.vaccinationForm.controls['id'].value)
+      .subscribe(res => {
+        updatedVaccination.location = res;
+      });
 
     if (this.isUpdatingVaccination) {
       this.is.update(updatedVaccination).subscribe(res => {
