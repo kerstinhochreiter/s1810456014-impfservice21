@@ -20,7 +20,7 @@ export class VaccinationListComponent implements OnInit {
 
   constructor(
     private is: VaccinationStoreService,
-    private authService: AuthenticationService,
+    public authService: AuthenticationService,
     private is_user: UserStoreService
   ) {}
 
@@ -36,10 +36,5 @@ export class VaccinationListComponent implements OnInit {
     this.is.getAll().subscribe(res => (this.vaccinations = res));
     this.userId = Number.parseInt(localStorage.getItem('id'));
     this.is_user.getSingle(this.userId).subscribe(user => (this.user = user));
-
-  }
-
-  isLoggedIn() {
-    return this.authService.isLoggedIn();
   }
 }

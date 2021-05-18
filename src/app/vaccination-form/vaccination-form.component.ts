@@ -16,6 +16,7 @@ import { DatePipe } from '@angular/common';
 export class VaccinationFormComponent implements OnInit {
   //@Input() locations: Location;
   locations: Location[];
+  location: Location[];
   id: number;
   vaccinationForm: FormGroup;
   //liefer einen leeren Impftermin
@@ -37,7 +38,6 @@ export class VaccinationFormComponent implements OnInit {
   ) {}
   ngOnInit() {
     this.is_loc.getAll().subscribe(res => (this.locations = res));
-
     //is der Parameter ID bei der URL angehängt --> wird es gerade upgedated
     const id = this.route.snapshot.params['id'];
     if (id) {
@@ -48,11 +48,6 @@ export class VaccinationFormComponent implements OnInit {
         this.initVaccination();
       });
     }
-
-    /* this.is_loc.getSingle(this.id).subscribe(vaclocation => {
-      this.locations = vaclocation;
-      this.initVaccination();
-    });*/
     this.initVaccination();
   }
 
@@ -75,7 +70,7 @@ export class VaccinationFormComponent implements OnInit {
         this.vaccination.max_participants,
         [Validators.required, Validators.minLength(1)]
       ],
-      location_id: this.selectedCity
+      location_id: [this.vaccination.location_id, Validators.required]
     });
     this.vaccinationForm.statusChanges.subscribe(() => {
       this.updateErrorMessages();
@@ -123,6 +118,9 @@ export class VaccinationFormComponent implements OnInit {
       .subscribe(res => {
         updatedVaccination.location = res;
       });
+  console.log(this.is_loc
+      .getSingle(this.vaccinationForm.controls['id'].value));
+
 
     if (this.isUpdatingVaccination) {
       this.is.update(updatedVaccination).subscribe(res => {

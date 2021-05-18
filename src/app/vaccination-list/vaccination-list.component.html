@@ -8,10 +8,17 @@
 
 
 <br>
-<div *ngIf="isLoggedIn()">
-  <h2>Herzlichen Willkommen {{user?.firstname}} {{user?.lastname}}</h2>
+<div *ngIf="authService.isLoggedIn()">
+  <h2>Herzlichen Willkommen {{user?.firstname}} {{user?.lastname}} </h2>
+    <div *ngIf="authService.isLoggedIn() && user?.vaccination_id">
+    <p>Du bist bereits bei einem Imptermin angemeldet: </p>
+    <a routerLink="../vaccinations/{{user?.vaccination_id}}" class="ui teal tiny button">Zum
+      Impftermin</a>
+  </div>
+
+ 
 </div>
-<div *ngIf="!isLoggedIn()">
+<div *ngIf="!authService.isLoggedIn()">
   <div class="ui grid">
     <div class="four wide column">
       <h2>Hagenberg impft.</h2>
@@ -31,7 +38,7 @@
   <h2>Akutelle Impftermine</h2>
 </div>
 
-<div *ngIf="user?.isadmin == false || !isLoggedIn() ">
+<div *ngIf="user?.isadmin == false || !authService.isLoggedIn() ">
   <h2>Hier geht's zur Anmeldung</h2>
 </div>
 

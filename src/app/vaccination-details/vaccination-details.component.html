@@ -24,23 +24,19 @@
 
         </div>
       </div>
-      <div class="extra content" *ngIf="user?.isadmin == true && isLoggedIn()">
-        <button class="ui tiny red labeled icon button" (click)="removeVaccination()">
-  <i class="remove icon"></i>
-  Löschen
-</button>
-
-        <a class="ui tiny yellow labeled icon button" [routerLink]="['../../admin', vaccination.id]">
-          <i class="write icon"></i>
-          Bearbeiten</a>
-      </div>
     </div>
   </div>
 </div>
 <br>
-<div *ngIf="user?.isadmin == true && isLoggedIn()">
+<div *ngIf="user?.isadmin == true && authService.isLoggedIn()">
   <div *ngIf="!vaccination.users.length; else Show">
-    <p>Es haben sich noch keine Teilnehmer*innen angemeldet.</p>
+    <div class="ui placeholder segment">
+      <div class="ui icon header">
+        <i class="users  icon"></i>
+        Es sind noch keine Personen für diese Impfung angemeldet.
+      </div>
+      <div class="ui teal tiny button">Hinzufügen</div>
+    </div>
   </div>
   <ng-template #Show>
     <h2>Übersicht der Teilnerhmer*innen</h2>
@@ -76,11 +72,20 @@
     </table>
   </ng-template>
 </div>
-
-<div *ngIf="user?.isadmin == false">
-  <button class="ui gray button tiny">Anmelden</button>
-</div>
 <br>
-<button routerLink=".." class="ui left labeled icon button tiny"><i class="left arrow icon"></i>Zurück zur Übersicht</button>
+<button routerLink=".." class="ui left floated labeled icon button tiny"><i class="left arrow icon"></i>Zurück zur Übersicht</button>
+<div *ngIf="user?.isadmin == true && authService.isLoggedIn()">
+        <button class="ui right floated tiny gray labeled icon button" (click)="removeVaccination()">
+  <i class="remove icon"></i>
+  Löschen
+</button>
+
+        <a class="ui right floated tiny gray labeled icon button" [routerLink]="['../../admin', vaccination.id]">
+          <i class="write icon"></i>
+          Bearbeiten</a>
+      </div>
+      <div *ngIf="user?.isadmin == false && authService.isLoggedIn()">
+  <button class="ui left floated gray button tiny">Anmelden</button>
+</div>
 <br>
 <br>

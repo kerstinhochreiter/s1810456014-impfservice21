@@ -26,7 +26,7 @@ export class VaccinationDetailsComponent implements OnInit {
     private is_user: UserStoreService,
     private route: ActivatedRoute,
     private router: Router,
-    private authService: AuthenticationService
+    public authService: AuthenticationService
   ) {}
 
   //ngOnInit() {}

@@ -60,4 +60,12 @@ export class AuthenticationService {
   isLoggedOut() {
     return !this.isLoggedIn();
   }
+
+  getLoginStatus() {
+    if (this.isLoggedIn()) {
+      return 'Logout';
+    } else {
+      return 'Login';
+    }
+  }
 }

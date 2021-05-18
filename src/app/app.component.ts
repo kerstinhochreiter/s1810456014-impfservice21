@@ -13,23 +13,11 @@ export class AppComponent {
   @Input() user: User;
   public userId;
   constructor(
-    private authService: AuthenticationService,
+    public authService: AuthenticationService,
     private is_user: UserStoreService
   ) {}
   ngOnInit() {
     this.userId = Number.parseInt(localStorage.getItem('id'));
     this.is_user.getSingle(this.userId).subscribe(u => (this.user = u));
-  }
-
-  isLoggedIn() {
-    return this.authService.isLoggedIn();
-  }
-
-  getLoginStatus() {
-    if (this.isLoggedIn()) {
-      return 'Logout';
-    } else {
-      return 'Login';
-    }
   }
 }
