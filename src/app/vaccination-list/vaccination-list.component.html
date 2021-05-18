@@ -6,26 +6,33 @@
   jeder a-Tag wird dann durch die kind-komponente ersetzt durch klasse
   @Input in der kind-komponente(book-details) teilt der kind-komponente mit dass sie das übergeben kann-->
 
-<div class="ui grid">
-  <!--<div class="four wide column">
-    <h2>Hagenberg impft.</h2>
-  </div>
-  <div class="twelve wide column">Die Möglichkeit, sich impfen zu lassen, gibt es in ganz Österreich. Die Abläufe sind
-    allerdings von Bundesland zu Bundesland verschieden und werden laufend weiterentwickelt. Wir aktualisieren die
-    Informationen regelmäßig für Sie.
 
-    Bei individuellen Fragen zur Corona-Schutzimpfung (Unverträglichkeiten, Allergien, Vorerkrankungen, etc.) wenden Sie
-    sich bitte vertrauensvoll an Ihre betreuende Ärztin bzw. Ihren betreuenden Arzt.</div>-->
+<br>
+<div *ngIf="isLoggedIn()">
+  <h2>Herzlichen Willkommen {{user?.firstname}} {{user?.lastname}}</h2>
 </div>
-<h2>Herzlichen Willkommen {{user?.firstname}} {{user?.lastname}}</h2>
-<!--<h2>{{getCurrentUser()}}</h2>-->
+<div *ngIf="!isLoggedIn()">
+  <div class="ui grid">
+    <div class="four wide column">
+      <h2>Hagenberg impft.</h2>
+    </div>
+    <div class="twelve wide column">Die Möglichkeit, sich impfen zu lassen, gibt es in ganz Österreich. Die Abläufe sind
+      allerdings von Bundesland zu Bundesland verschieden und werden laufend weiterentwickelt. Wir aktualisieren die
+      Informationen regelmäßig für Sie.
+
+      Bei individuellen Fragen zur Corona-Schutzimpfung (Unverträglichkeiten, Allergien, Vorerkrankungen, etc.) wenden
+      Sie
+      sich bitte vertrauensvoll an Ihre betreuende Ärztin bzw. Ihren betreuenden Arzt.</div>
+  </div>
+</div>
+<br>
 
 <div *ngIf="user?.isadmin == true">
-<h2>Akutelle Impftermine</h2>
+  <h2>Akutelle Impftermine</h2>
 </div>
 
-<div *ngIf="user?.isadmin == false">
-<h2>Hier geht's zur Anmeldung</h2>
+<div *ngIf="user?.isadmin == false || !isLoggedIn() ">
+  <h2>Hier geht's zur Anmeldung</h2>
 </div>
 
 <table class="ui selectable celled table">

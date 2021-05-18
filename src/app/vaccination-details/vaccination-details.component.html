@@ -37,6 +37,7 @@
     </div>
   </div>
 </div>
+<br>
 <div *ngIf="user?.isadmin == true">
   <div *ngIf="!vaccination.users.length; else Show">
     <p>Es haben sich noch keine Teilnehmer*innen angemeldet.</p>
@@ -79,7 +80,7 @@
 <div *ngIf="user?.isadmin == false">
   <button class="ui gray button tiny">Anmelden</button>
 </div>
-
+<br>
 <button routerLink=".." class="ui left labeled icon button tiny"><i class="left arrow icon"></i>Zurück zur Übersicht</button>
 <br>
 <br>
