@@ -51,7 +51,6 @@ export class VaccinationFormComponent implements OnInit {
 
   selectChangeHandler(event: any) {
     this.selectedCity = event.target.value;
-    console.log(this.selectedCity);
   }
 
   initVaccination() {

@@ -35,9 +35,11 @@ export class VaccinationListComponent implements OnInit {
   ngOnInit() {
     this.is.getAll().subscribe(res => (this.vaccinations = res));
     this.userId = Number.parseInt(localStorage.getItem('id'));
-    console.log('MEINE ID ====');
-    console.log(this.userId);
     this.is_user.getSingle(this.userId).subscribe(user => (this.user = user));
 
+  }
+
+  isLoggedIn() {
+    return this.authService.isLoggedIn();
   }
 }

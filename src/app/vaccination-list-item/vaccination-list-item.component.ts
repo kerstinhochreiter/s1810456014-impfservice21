@@ -7,13 +7,8 @@ import { Vaccination } from '../shared/vaccination';
   templateUrl: './vaccination-list-item.component.html'
 })
 export class VaccinationListItemComponent implements OnInit {
- 
   @Input() vaccination: Vaccination;
   constructor(is_user: UserStoreService) {}
 
-  ngOnInit() {
-    //console.log(this.vaccination.location);
-    //console.log(this.vaccination.users);
-    
-  }
+  ngOnInit() {}
 }

@@ -1,26 +1,23 @@
-<button routerLink=".." class="ui black button tiny">Zurück zur Übersicht</button>
-<br>
-<br>
 <div class="ui grid">
   <div class="sixteen wide column">
     <div class="ui card">
       <div class="content">
-        <div class="header">{{vaccination.location.city}} | {{vaccination.location.description}}</div>
+        <div class="header">{{vaccination?.location.city}} | {{vaccination?.location.description}}</div>
       </div>
       <div class="content">
-        <h4 class="ui sub header">{{vaccination.date | date:'EEEE, dd.MM.yyyy'}}</h4>
+        <h4 class="ui sub header">{{vaccination?.date | date:'EEEE, dd.MM.yyyy'}}</h4>
         <div class="ui small feed">
           <div class="event">
             <div class="content">
               <div class="summary">
-                Maximale Anzahl: {{ vaccination.max_participants }}
+                Maximale Anzahl: {{ vaccination?.max_participants }}
               </div>
             </div>
           </div>
           <div class="event">
             <div class="content">
               <div class="summary">
-                Uhrzeit: {{vaccination.time}}
+                Uhrzeit: {{vaccination?.time}}
               </div>
             </div>
           </div>
@@ -82,3 +79,7 @@
 <div *ngIf="user?.isadmin == false">
   <button class="ui gray button tiny">Anmelden</button>
 </div>
+
+<button routerLink=".." class="ui left labeled icon button tiny"><i class="left arrow icon"></i>Zurück zur Übersicht</button>
+<br>
+<br>
