@@ -26,7 +26,6 @@ export class VaccinationFormComponent implements OnInit {
   datePipeDate: string;
   //assoziatives Array mit string als wert und anfangs ist es leer
   errors: { [key: string]: string } = {};
-  selectedCity: number;
 
   constructor(
     private fb: FormBuilder,
@@ -51,10 +50,6 @@ export class VaccinationFormComponent implements OnInit {
     this.initVaccination();
   }
 
-  selectChangeHandler(event: any) {
-    this.selectedCity = event.target.value;
-  }
-
   initVaccination() {
     this.datePipeDate = this.pipe.transform(
       this.vaccination.date,
@@ -65,7 +60,7 @@ export class VaccinationFormComponent implements OnInit {
       id: this.vaccination.id,
       //vorgefertigter Validator
       date: [this.vaccination.date, Validators.required],
-      time: [this.datePipeTime, Validators.required],
+      time: [this.vaccination.time, Validators.required],
       max_participants: [
         this.vaccination.max_participants,
         [Validators.required, Validators.minLength(1)]
@@ -101,7 +96,7 @@ export class VaccinationFormComponent implements OnInit {
   }
 
   submitForm() {
-    /**let updatedVacevent:Vacevent = VaceventFactory.fromObject(this.vaceventForm.value);
+    /**let updatedVaccination:Vaccination = VaceventFactory.fromObject(this.vaceventForm.value);
     console.log(this.vaceventForm.value.startTime);
     const startTimeNew = moment(this.vaceventForm.value.date + ' ' + this.vaceventForm.value.startTime).toDate();
     const endTimeNew = moment(this.vaceventForm.value.date + ' ' + this.vaceventForm.value.endTime).toDate();
@@ -112,16 +107,15 @@ export class VaccinationFormComponent implements OnInit {
     const updatedVaccination: Vaccination = VaccinationFactory.fromObject(
       this.vaccinationForm.value
     );
+    console.log("JETZT");
+    console.log(this.vaccinationForm.value.location_id);
 
     this.is_loc
       .getSingle(this.vaccinationForm.controls['id'].value)
       .subscribe(res => {
         updatedVaccination.location = res;
       });
-  console.log(this.is_loc
-      .getSingle(this.vaccinationForm.controls['id'].value));
-
-
+    console.log(this.vaccinationForm.value.location_id);
     if (this.isUpdatingVaccination) {
       this.is.update(updatedVaccination).subscribe(res => {
         this.router.navigate(['../../vaccinations', updatedVaccination.id], {
