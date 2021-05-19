@@ -9,14 +9,20 @@
 
 <br>
 <div *ngIf="authService.isLoggedIn()">
-  <h2>Herzlichen Willkommen {{user?.firstname}} {{user?.lastname}} </h2>
-    <div *ngIf="authService.isLoggedIn() && user?.vaccination_id">
+  <h2>Herzlichen Willkommen {{user?.firstname}} {{user?.lastname}}</h2>
+  <div *ngIf="user?.isadmin == true && authService.isLoggedIn()">
+    <p>Hier kannst du einen neuen Impftermin hinzufügen: </p>
+    <button routerLink="../admin" routerLinkActive="active"
+          class="ui teal tiny button"><i class="add icon"></i>Impftermin hinzufügen</button>
+  </div>
+
+  <div *ngIf="authService.isLoggedIn() && user?.vaccination_id">
     <p>Du bist bereits bei einem Imptermin angemeldet: </p>
     <a routerLink="../vaccinations/{{user?.vaccination_id}}" class="ui teal tiny button">Zum
       Impftermin</a>
   </div>
 
- 
+
 </div>
 <div *ngIf="!authService.isLoggedIn()">
   <div class="ui grid">
@@ -34,6 +40,7 @@
 </div>
 <br>
 
+<!--vaccination list header-->
 <div *ngIf="user?.isadmin == true">
   <h2>Akutelle Impftermine</h2>
 </div>
@@ -42,6 +49,7 @@
   <h2>Hier geht's zur Anmeldung</h2>
 </div>
 
+<!--vaccination list-->
 <table class="ui selectable celled table">
   <thead>
     <tr>
@@ -56,11 +64,11 @@
     <tr *ngFor="let vaccination of vaccinations" class="item is-vaccination-list-item" [vaccination]="vaccination"
       [routerLink]="['./', vaccination.id]"></tr>
   </tbody>
-  <!--</tbody>
-  </table>-->
-  <!--- <div *ngIf="!books" class="ui active dimmer">
-    <div class="ui large text loader">Daten werden geladen</div>
-  </div>
-  <p *ngIf="books && !books.length">Es wurden noch keine Bücher am Server eingetragen.</p>-->
 
-  <!--</div>-->
+  <div *ngIf="!vaccinations" class="ui active dimmer">
+  <div class="ui large text loader">Imoftermine werden geladen</div>
+
+  <p *ngIf="vaccinations && !vaccinations.length">Es wurden noch keine Impftermine am Server eingetragen.</p>
+</div>
+
+</table>

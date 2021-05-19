@@ -30,13 +30,13 @@ export class AuthenticationService {
     console.log(decodedToken.user.id);
     localStorage.setItem('token', token);
     localStorage.setItem('id', decodedToken.user.id);
-    localStorage.setItem('isadmin', decodedToken.user.isadmin);
+    //localStorage.setItem('isadmin', decodedToken.user.isadmin);
   }
   logout() {
     this.http.post(`${this.api}/logout`, {});
     localStorage.removeItem('token');
     localStorage.removeItem('id');
-    localStorage.removeItem('isadmin');
+    //localStorage.removeItem('isadmin');
     console.log('logged out');
   }
   public isLoggedIn() {

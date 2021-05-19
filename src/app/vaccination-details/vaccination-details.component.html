@@ -84,8 +84,8 @@
     <i class="write icon"></i>
     Bearbeiten</a>
 </div>
-<div *ngIf="user?.isadmin == false && authService.isLoggedIn()">
-  <button class="ui left floated gray button tiny">Anmelden</button>
+<div *ngIf="user?.isadmin == false && authService.isLoggedIn() && user?.vaccination_id == 0">
+  <button class="ui right floated teal tiny button">Zur Impfung anmelden</button>
 </div>
 <br>
 <br>

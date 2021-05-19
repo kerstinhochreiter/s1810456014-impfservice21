@@ -10,10 +10,8 @@ import { VaccinationStoreService } from '../shared/vaccination-store.service';
   templateUrl: './vaccination-list.component.html'
 })
 export class VaccinationListComponent implements OnInit {
-  firstname: string = '';
   vaccinations: Vaccination[];
   public userId;
-  public admin;
   isadmin: boolean = false;
   @Input() user: User;
   @Output() showDetailsEvent = new EventEmitter<Vaccination>();
