@@ -107,8 +107,6 @@ export class VaccinationFormComponent implements OnInit {
     const updatedVaccination: Vaccination = VaccinationFactory.fromObject(
       this.vaccinationForm.value
     );
-    console.log("JETZT");
-    console.log(this.vaccinationForm.value.location_id);
 
     this.is_loc
       .getSingle(this.vaccinationForm.controls['id'].value)

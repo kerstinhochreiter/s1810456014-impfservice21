@@ -61,6 +61,23 @@ export class VaccinationDetailsComponent implements OnInit {
     this.is_user.update(this.user).subscribe(res => {});
   }
 
+  addUserToVaccination(e: Event, user) {
+    //let value = (<HTMLInputElement>e.target).value;
+    console.log(user);
+    this.user = user;
+    const paramss = this.route.snapshot.params;
+    this.user.vaccination_id = paramss.id;
+    this.is_user.update(this.user).subscribe(res => {});
+  }
+
+  checkMaxParticipants() {
+    console.log(this.vaccination.max_participants);
+    if (this.vaccination.users.length < this.vaccination.max_participants) {
+      return false;
+    }
+    return true;
+  }
+
   isLoggedIn() {
     return this.authService.isLoggedIn();
   }

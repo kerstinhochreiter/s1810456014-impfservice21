@@ -27,6 +27,11 @@
     </div>
   </div>
 </div>
+<div *ngFor="let user of vaccination.users">
+  <div *ngIf="checkMaxParticipants()">
+    <h3>ACHTUNG: Es sind keine Plätze für diesen Termin frei</h3>
+  </div>
+</div>
 <br>
 <div *ngIf="user?.isadmin == true && authService.isLoggedIn()">
   <div *ngIf="!vaccination.users.length; else Show">
@@ -84,8 +89,9 @@
     <i class="write icon"></i>
     Bearbeiten</a>
 </div>
-<div *ngIf="user?.isadmin == false && authService.isLoggedIn() && user?.vaccination_id == 0">
-  <button class="ui right floated teal tiny button">Zur Impfung anmelden</button>
+<div *ngIf="user?.isadmin == false && authService.isLoggedIn() && user?.vaccination_id == null">
+  <button class="ui right floated teal tiny button" (click)="addUserToVaccination($event, user)">Zur Impfung anmelden</button>
 </div>
+
 <br>
 <br>
