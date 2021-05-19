@@ -28,8 +28,8 @@
   </div>
 </div>
 <div *ngFor="let user of vaccination.users">
-  <div *ngIf="checkMaxParticipants()">
-    <h3>ACHTUNG: Es sind keine Plätze für diesen Termin frei</h3>
+  <div *ngIf="checkMaxParticipants()" class="ui negative message">
+    <p>ACHTUNG: Es sind keine Plätze für diesen Termin frei</p>
   </div>
 </div>
 <br>
@@ -37,7 +37,7 @@
   <div *ngIf="!vaccination.users.length; else Show">
     <div class="ui placeholder segment">
       <div class="ui icon header">
-        <i class="users  icon"></i>
+        <i class="users icon"></i>
         Es sind noch keine Personen für diese Impfung angemeldet.
       </div>
       <div class="ui teal tiny button">Hinzufügen</div>
@@ -67,7 +67,7 @@
           <td data-label="SVNR">{{user?.svnr}}</td>
           <td data-label="Wohnort">{{user?.street}} {{user?.number}}</td>
           <td data-label="Telefonnummer">{{user?.phonenumber}}</td>
-          <td data-label="E-Mail">{{user.email}}</td>
+          <td data-label="E-Mail">{{user?.email}}</td>
           <td data-label="Impfung"><select formControlName="hasvaccination" class="ui selection dropdown" (change)="editVaccinationStatus($event, user)">
               <option value="true" [selected]="user?.hasvaccination">Geimpft</option>
               <option value="false" [selected]="!user?.hasvaccination">Nicht geimpft</option>
