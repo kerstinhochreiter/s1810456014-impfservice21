@@ -56,7 +56,7 @@
       <th>Ort</th>
       <th>Datum</th>
       <th>Uhrzeit</th>
-      <th>Maximale Teilnehmeranzahl</th>
+      <th>Freie Plätze</th>
     </tr>
 
   </thead>
@@ -66,9 +66,9 @@
   </tbody>
 
   <div *ngIf="!vaccinations" class="ui active dimmer">
-  <div class="ui large text loader">Imoftermine werden geladen</div>
+    <div class="ui large text loader">Imoftermine werden geladen</div>
 
-  <p *ngIf="vaccinations && !vaccinations.length">Es wurden noch keine Impftermine am Server eingetragen.</p>
-</div>
+    <p *ngIf="vaccinations && !vaccinations.length">Es wurden noch keine Impftermine am Server eingetragen.</p>
+  </div>
 
 </table>

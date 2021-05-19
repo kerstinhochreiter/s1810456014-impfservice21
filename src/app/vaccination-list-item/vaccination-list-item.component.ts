@@ -11,4 +11,14 @@ export class VaccinationListItemComponent implements OnInit {
   constructor(is_user: UserStoreService) {}
 
   ngOnInit() {}
+
+  getNrOfAvailable() {
+    const nrOfPlaces =
+      this.vaccination.max_participants - this.vaccination.users.length;
+    if (nrOfPlaces == 0) {
+      return 'Keine freien Plätze';
+    } else {
+      return nrOfPlaces;
+    }
+  }
 }

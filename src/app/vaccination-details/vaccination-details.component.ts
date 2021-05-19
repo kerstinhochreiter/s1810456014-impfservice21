@@ -78,6 +78,10 @@ export class VaccinationDetailsComponent implements OnInit {
     return true;
   }
 
+  getcurParticipants() {
+    return this.vaccination.users.length;
+  }
+
   isLoggedIn() {
     return this.authService.isLoggedIn();
   }
