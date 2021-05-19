@@ -57,15 +57,15 @@
       <tbody>
         <tr *ngFor="let user of vaccination.users">
           <!--<td data-label="Geschlecht">{{user.gender}}</td>-->
-          <td data-label="Name">{{user.firstname}} {{user .lastname}}</td>
-          <td data-label="Geburtsdatum">{{user.birth | date:' dd.MM.yyyy'}}</td>
-          <td data-label="SVNR">{{user.svnr}}</td>
-          <td data-label="Wohnort">{{user.street}} {{user.number}}</td>
-          <td data-label="Telefonnummer">{{user.phonenumber}}</td>
+          <td data-label="Name">{{user?.firstname}} {{user?.lastname}}</td>
+          <td data-label="Geburtsdatum">{{user?.birth | date:' dd.MM.yyyy'}}</td>
+          <td data-label="SVNR">{{user?.svnr}}</td>
+          <td data-label="Wohnort">{{user?.street}} {{user?.number}}</td>
+          <td data-label="Telefonnummer">{{user?.phonenumber}}</td>
           <td data-label="E-Mail">{{user.email}}</td>
           <td data-label="Impfung"><select formControlName="hasvaccination" class="ui selection dropdown" (change)="editVaccinationStatus($event, user)">
-              <option value="true" [selected]="user.hasvaccination">Geimpft</option>
-              <option value="false" [selected]="!user.hasvaccination">Nicht geimpft</option>
+              <option value="true" [selected]="user?.hasvaccination">Geimpft</option>
+              <option value="false" [selected]="!user?.hasvaccination">Nicht geimpft</option>
                   </select>
         </tr>
       </tbody>
