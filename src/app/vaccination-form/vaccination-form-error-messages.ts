@@ -17,5 +17,6 @@ export const VaccinationFormErrorMessages = [
     "Die Anzahl der Teilnehmer*innen muss positiv sein"
   ),
   new ErrorMessage("date", "required", "Es muss ein Datum angegeben werden"),
-  new ErrorMessage("time", "required", "Es muss eine Zeit angegeben werden")
+  new ErrorMessage("time", "required", "Es muss eine Zeit angegeben werden"),
+  new ErrorMessage("location", "required", "Es ein Ort für die Impfung ausgewählt werden")
 ];
