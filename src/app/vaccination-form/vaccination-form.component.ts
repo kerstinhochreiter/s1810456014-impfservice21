@@ -23,8 +23,6 @@ export class VaccinationFormComponent implements OnInit {
   //liefer einen leeren Impftermin
   vaccination = VaccinationFactory.empty();
   isUpdatingVaccination = false;
-  datePipeTime: string;
-  datePipeDate: string;
   //assoziatives Array mit string als wert und anfangs ist es leer
   errors: { [key: string]: string } = {};
 
@@ -52,12 +50,7 @@ export class VaccinationFormComponent implements OnInit {
   }
 
   initVaccination() {
-    /**this.datePipeDate = this.pipe.transform(
-      this.vaccination.date,
-      'tt:mm:jjjj'
-    );**/
     this.vaccination.location_id = this.selectedLocation;
-    //this.datePipeTime = this.pipe.transform(this.vaccination.time, 'HH:mm');
     this.vaccinationForm = this.fb.group({
       id: this.vaccination.id,
       //vorgefertigter Validator
