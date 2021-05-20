@@ -103,11 +103,11 @@ export class VaccinationFormComponent implements OnInit {
       this.vaccinationForm.value
     );
 
-    this.is_loc
+    /**this.is_loc
       .getSingle(this.vaccinationForm.controls['id'].value)
       .subscribe(res => {
         updatedVaccination.location = res;
-      });
+      });**/
     console.log(this.vaccinationForm.value.location_id);
     if (this.isUpdatingVaccination) {
       this.is.update(updatedVaccination).subscribe(res => {
