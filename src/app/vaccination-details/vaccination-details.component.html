@@ -15,7 +15,7 @@
     Uhrzeit: {{vaccination?.time}} <br>
     <i class="map pin icon"></i>
     {{vaccination?.location.l_street}}
-    {{vaccination?.location.l_number}} | 
+    {{vaccination?.location.l_number}} |
     {{vaccination?.location.plz}} {{vaccination?.location.city}}
   </div>
 </div>
@@ -24,7 +24,7 @@
   <div *ngIf="checkMaxParticipants()" class="ui warning message">
     <i class="warning icon"></i>
     Es sind keine Plätze für diesen Termin frei
-  
+
   </div>
   <br>
 </div>
@@ -87,6 +87,10 @@
 </div>
 <div *ngIf="user?.isadmin == false && authService.isLoggedIn() && user?.vaccination_id == null">
   <button class="ui right floated teal tiny button" (click)="addUserToVaccination($event, user)">Zur Impfung anmelden</button>
+</div>
+<div
+  *ngIf="user?.isadmin == false && authService.isLoggedIn() && user?.vaccination_id && user?.vaccination_id == vaccination.id">
+  <button class="ui right floated teal tiny button" (click)="removeUserFromVaccination()">Impfanmeldung stornieren</button>
 </div>
 
 <br>

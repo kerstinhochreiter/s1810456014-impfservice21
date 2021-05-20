@@ -70,6 +70,11 @@ export class VaccinationDetailsComponent implements OnInit {
     this.is_user.update(this.user).subscribe(res => {});
   }
 
+  removeUserFromVaccination() {
+    this.user.vaccination_id = null;
+    this.is_user.update(this.user).subscribe(res => {});
+  }
+
   checkMaxParticipants() {
     console.log(this.vaccination.max_participants);
     if (this.vaccination.users.length < this.vaccination.max_participants) {
