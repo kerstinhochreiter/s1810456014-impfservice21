@@ -28,18 +28,18 @@
 
 
   <!--(change)="selectChangeHandler($event)"-->
-  <!--[(ngModel)]="curLocationId"-->
+  <!---->
 
   <div class="field">
     <label>Ort</label>
-    <select class="custom-select" formControlName="location" >
+    <select class="custom-select" formControlName="location"[(ngModel)]="vaccination.location.id" >
       <option *ngIf="!vaccinationForm.value.select" [ngValue]="null" selected disabled></option>
       <option *ngFor="let location of locations" [ngValue]="location.id">
       {{location.city}}</option>
 
     </select>
-        <div *ngIf="errors.location" class="ui negative message">{{
-      errors.time }}</div>
+    <div *ngIf="errors.location" class="ui negative message">{{
+      errors.time}}</div>
   </div>
   <br>
 
