@@ -30,7 +30,7 @@
 </div>
 
 <div *ngIf="user?.isadmin == true && authService.isLoggedIn()">
-  <div *ngIf="!vaccination.users.length; else Show">
+  <div *ngIf="!vaccination?.users.length; else Show">
     <div class="ui warning message">
       <div class="ui icon">
         <i class="users icon"></i>
@@ -55,7 +55,7 @@
 
       </thead>
       <tbody>
-        <tr *ngFor="let user of vaccination.users">
+        <tr *ngFor="let user of vaccination?.users">
           <!--<td data-label="Geschlecht">{{user.gender}}</td>-->
           <td data-label="Name">{{user?.firstname}} {{user?.lastname}}</td>
           <td data-label="Geburtsdatum">{{user?.birth | date:' dd.MM.yyyy'}}</td>
