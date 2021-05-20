@@ -1,5 +1,6 @@
 <div *ngIf="!isLoggedIn()">
-  <h1>Login</h1>
+  <h2>Login</h2>
+  <p>Melden Sie sich an, um sich für einen Impftermin registrieren zu können: </p>
   <form class="ui large form" [formGroup]="loginForm" (ngSubmit)="login()">
     <div class="field">
       <label>E-Mail</label>

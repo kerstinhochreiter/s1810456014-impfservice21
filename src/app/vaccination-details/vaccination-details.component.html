@@ -1,46 +1,36 @@
-<div class="ui grid">
-  <div class="sixteen wide column">
-    <div class="ui card">
-      <div class="content">
-        <div class="header">{{vaccination?.location.city}} | {{vaccination?.location.description}}</div>
-      </div>
-      <div class="content">
-        <h4 class="ui sub header">{{vaccination?.date | date:'EEEE, dd.MM.yyyy'}}</h4>
-        <div class="ui small feed">
-          <div class="event">
-            <div class="content">
-              <div class="summary">
-                Anzahl der aktuellen Teilnehmer*innen: {{getcurParticipants()}} /{{ vaccination?.max_participants }}
-              </div>
-            </div>
-          </div>
-          <div class="event">
-            <div class="content">
-              <div class="summary">
-                Uhrzeit: {{vaccination?.time}}
-              </div>
-            </div>
-          </div>
+<div class="ui">
+  <h2 class="ui left floated header">{{vaccination?.location.city}} | {{vaccination?.location.description}}</h2>
+  <div class="ui clearing divider"></div>
+  <div class="content">
+    <i class="calendar icon"></i>
+    {{vaccination?.date | date:'EEEE, dd.MM.yyyy'}}
 
-        </div>
-      </div>
+    <div class="content">
+      <i class="users icon"></i>
+      Anzahl der aktuellen Teilnehmer*innen: {{getcurParticipants()}} /{{ vaccination?.max_participants }}
+    </div>
+
+    <div class="content">
+      <i class="clock icon"></i>
+      Uhrzeit: {{vaccination?.time}}
     </div>
   </div>
 </div>
+<br>
 <div *ngFor="let user of vaccination.users">
-  <div *ngIf="checkMaxParticipants()" class="ui negative message">
-    <p>ACHTUNG: Es sind keine Plätze für diesen Termin frei</p>
+  <div *ngIf="checkMaxParticipants()" class="ui warning message">
+    <i class="warning icon"></i>
+    Es sind keine Plätze für diesen Termin frei
   </div>
 </div>
 <br>
 <div *ngIf="user?.isadmin == true && authService.isLoggedIn()">
   <div *ngIf="!vaccination.users.length; else Show">
-    <div class="ui placeholder segment">
-      <div class="ui icon header">
+    <div class="ui warning message">
+      <div class="ui icon">
         <i class="users icon"></i>
         Es sind noch keine Personen für diese Impfung angemeldet.
       </div>
-      <div class="ui teal tiny button">Hinzufügen</div>
     </div>
   </div>
   <ng-template #Show>
@@ -85,9 +75,9 @@
   Löschen
 </button>
 
-  <a class="ui right floated tiny gray labeled icon button" [routerLink]="['../../admin', vaccination.id]">
+  <button class="ui right floated tiny gray labeled icon button" [routerLink]="['../../admin', vaccination.id]">
     <i class="write icon"></i>
-    Bearbeiten</a>
+    Bearbeiten</button>
 </div>
 <div *ngIf="user?.isadmin == false && authService.isLoggedIn() && user?.vaccination_id == null">
   <button class="ui right floated teal tiny button" (click)="addUserToVaccination($event, user)">Zur Impfung anmelden</button>
