@@ -1,19 +1,22 @@
+<br>
 <div class="ui">
   <h2 class="ui left floated header">{{vaccination?.location.city}} | {{vaccination?.location.description}}</h2>
+  <div class="ui left centered content">
+
+  </div>
   <div class="ui clearing divider"></div>
-  <div class="content">
+  <div class="ui left centered content">
     <i class="calendar icon"></i>
-    {{vaccination?.date | date:'EEEE, dd.MM.yyyy'}}
+    {{vaccination?.date | date:'EEEE, dd.MM.yyyy'}}<br>
+    <i class="users icon"></i>
+    Anzahl der aktuellen Teilnehmer*innen: {{getcurParticipants()}} /{{ vaccination?.max_participants }}<br>
 
-    <div class="content">
-      <i class="users icon"></i>
-      Anzahl der aktuellen Teilnehmer*innen: {{getcurParticipants()}} /{{ vaccination?.max_participants }}
-    </div>
-
-    <div class="content">
-      <i class="clock icon"></i>
-      Uhrzeit: {{vaccination?.time}}
-    </div>
+    <i class="clock icon"></i>
+    Uhrzeit: {{vaccination?.time}} <br>
+    <i class="map pin icon"></i>
+    {{vaccination?.location.l_street}}
+    {{vaccination?.location.l_number}} | 
+    {{vaccination?.location.plz}} {{vaccination?.location.city}}
   </div>
 </div>
 <br>
@@ -21,9 +24,11 @@
   <div *ngIf="checkMaxParticipants()" class="ui warning message">
     <i class="warning icon"></i>
     Es sind keine Plätze für diesen Termin frei
+  
   </div>
+  <br>
 </div>
-<br>
+
 <div *ngIf="user?.isadmin == true && authService.isLoggedIn()">
   <div *ngIf="!vaccination.users.length; else Show">
     <div class="ui warning message">
@@ -65,9 +70,10 @@
         </tr>
       </tbody>
     </table>
+    <br>
   </ng-template>
 </div>
-<br>
+
 <button routerLink=".." class="ui left floated labeled icon button tiny"><i class="left arrow icon"></i>Zurück zur Übersicht</button>
 <div *ngIf="user?.isadmin == true && authService.isLoggedIn()">
   <button class="ui right floated tiny gray labeled icon button" (click)="removeVaccination()">
