@@ -23,11 +23,11 @@ export class AuthenticationService {
   }
 
   public setLocalStorage(token: string) {
-    console.log('Storing token');
-    console.log(jwt_decode(token));
+    //console.log('Storing token');
+    //console.log(jwt_decode(token));
     const decodedToken = jwt_decode(token) as Token;
-    console.log(decodedToken);
-    console.log(decodedToken.user.id);
+    //console.log(decodedToken);
+    //console.log(decodedToken.user.id);
     localStorage.setItem('token', token);
     localStorage.setItem('id', decodedToken.user.id);
     //localStorage.setItem('isadmin', decodedToken.user.isadmin);
@@ -42,8 +42,8 @@ export class AuthenticationService {
   public isLoggedIn() {
     if (localStorage.getItem('token')) {
       let token: string = localStorage.getItem('token');
-      console.log(token);
-      console.log(jwt_decode(token));
+      //console.log(token);
+      //console.log(jwt_decode(token));
       const decodedToken = jwt_decode(token) as Token;
       let expirationDate: Date = new Date(0);
       expirationDate.setUTCSeconds(decodedToken.exp);
