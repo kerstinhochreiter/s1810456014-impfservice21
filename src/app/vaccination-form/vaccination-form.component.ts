@@ -52,13 +52,12 @@ export class VaccinationFormComponent implements OnInit {
   }
 
   initVaccination() {
-    this.datePipeDate = this.pipe.transform(
+    /**this.datePipeDate = this.pipe.transform(
       this.vaccination.date,
       'tt:mm:jjjj'
-    );
+    );**/
     this.vaccination.location_id = this.selectedLocation;
-    console.log(this.vaccination.location_id);
-    this.datePipeTime = this.pipe.transform(this.vaccination.time, 'HH:mm');
+    //this.datePipeTime = this.pipe.transform(this.vaccination.time, 'HH:mm');
     this.vaccinationForm = this.fb.group({
       id: this.vaccination.id,
       //vorgefertigter Validator
