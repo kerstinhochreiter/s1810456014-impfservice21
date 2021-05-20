@@ -19,6 +19,7 @@ export class VaccinationFormComponent implements OnInit {
   location: Location[];
   id: number;
   vaccinationForm: FormGroup;
+  selectedLocation: number;
   //liefer einen leeren Impftermin
   vaccination = VaccinationFactory.empty();
   isUpdatingVaccination = false;
@@ -55,6 +56,8 @@ export class VaccinationFormComponent implements OnInit {
       this.vaccination.date,
       'tt:mm:jjjj'
     );
+    this.vaccination.location_id = this.selectedLocation;
+    console.log(this.vaccination.location_id);
     this.datePipeTime = this.pipe.transform(this.vaccination.time, 'HH:mm');
     this.vaccinationForm = this.fb.group({
       id: this.vaccination.id,
@@ -96,14 +99,6 @@ export class VaccinationFormComponent implements OnInit {
   }
 
   submitForm() {
-    /**let updatedVaccination:Vaccination = VaceventFactory.fromObject(this.vaceventForm.value);
-    console.log(this.vaceventForm.value.startTime);
-    const startTimeNew = moment(this.vaceventForm.value.date + ' ' + this.vaceventForm.value.startTime).toDate();
-    const endTimeNew = moment(this.vaceventForm.value.date + ' ' + this.vaceventForm.value.endTime).toDate();
-    updatedVacevent.startTime = startTimeNew; 
-    updatedVacevent.endTime = endTimeNew; 
-    **/
-
     const updatedVaccination: Vaccination = VaccinationFactory.fromObject(
       this.vaccinationForm.value
     );
