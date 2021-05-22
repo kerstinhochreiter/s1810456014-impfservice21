@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from '../shared/authentication.service';
+import { User } from '../shared/user';
+import { UserFactory } from '../shared/user-factory';
+import { UserStoreService } from '../shared/user-store.service';
 
 interface Response {
   access_token: string;
@@ -12,10 +15,15 @@ interface Response {
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  userId: number;
+  @Input() user: User;
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    public authService: AuthenticationService
+    private route: ActivatedRoute,
+    public authService: AuthenticationService,
+    private is_user: UserStoreService
   ) {}
 
   ngOnInit() {
@@ -23,6 +31,9 @@ export class LoginComponent implements OnInit {
       username: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
+    //get current user
+    this.userId = Number.parseInt(localStorage.getItem('id'));
+    this.is_user.getSingle(this.userId).subscribe(user => (this.user = user));
   }
 
   login() {

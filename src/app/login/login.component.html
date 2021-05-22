@@ -25,6 +25,15 @@
   </form>
 </div>
 <div *ngIf="isLoggedIn()">
+  <h2>Dein Profil</h2>
+  <p><b>Name: </b>{{user?.firstname}} {{user?.lastname}}</p>
+  <p><b>Geburtstdatum:</b>{{user?.birth | date:' dd.MM.yyyy'}}</p>
+  <p><b>SV-Nr:</b> {{user?.svnr}}</p>
+  <p><b>E-Mail:</b> {{user?.email}}</p>
+  <p><b>Telefonnummer:</b> +43 {{user?.phonenumber}}</p>
+  <br>
+
+
   <h2 class="centered">Vielen Dank für Ihren Besuch!</h2>
   <button type="button" class="ui tiny teal button" (click)="logout()">Logout</button>
 </div>

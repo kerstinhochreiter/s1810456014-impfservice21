@@ -28,7 +28,6 @@
   </div>
   <br>
 </div>
-
 <div *ngIf="user?.isadmin == true && authService.isLoggedIn()">
   <div *ngIf="!vaccination?.users.length; else Show">
     <div class="ui warning message">
@@ -57,12 +56,11 @@
       </thead>
       <tbody>
         <tr *ngFor="let user of vaccination?.users">
-          <!--<td data-label="Geschlecht">{{user.gender}}</td>-->
           <td data-label="Name">{{user?.firstname}} {{user?.lastname}}</td>
           <td data-label="Geburtsdatum">{{user?.birth | date:' dd.MM.yyyy'}}</td>
           <td data-label="SVNR">{{user?.svnr}}</td>
           <td data-label="Wohnort">{{user?.street}} {{user?.number}}</td>
-          <td data-label="Telefonnummer">{{user?.phonenumber}}</td>
+          <td data-label="Telefonnummer">+43 {{user?.phonenumber}}</td>
           <td data-label="E-Mail">{{user?.email}}</td>
           <td data-label="Impfung"><select formControlName="hasvaccination" class="ui selection dropdown" (change)="editVaccinationStatus($event, user)">
               <option value="true" [selected]="user?.hasvaccination">Geimpft</option>
@@ -87,10 +85,9 @@
     Bearbeiten</button>
 </div>
 <div *ngIf="user?.isadmin == false && authService.isLoggedIn() && user?.vaccination_id == null">
-  <button class="ui right floated teal tiny button" (click)="addUserToVaccination($event, user)">Zur Impfung anmelden</button>
+  <button class="ui right floated teal tiny button" (click)="addUserToVaccination()">Zur Impfung anmelden</button>
 </div>
-<div
-  *ngIf="user?.isadmin == false && authService.isLoggedIn() && user?.vaccination_id && user?.vaccination_id == vaccination.id">
+<div *ngIf="user?.isadmin == false && authService.isLoggedIn() && user?.vaccination_id == vaccination.id">
   <button class="ui right floated teal tiny button" (click)="removeUserFromVaccination()">Impfanmeldung stornieren</button>
 </div>
 
