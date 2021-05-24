@@ -88,7 +88,7 @@ export class VaccinationFormComponent implements OnInit {
       }
     }
   }
-  
+
   isUpdating() {
     if (this.isUpdatingVaccination) {
       //updating
@@ -103,6 +103,8 @@ export class VaccinationFormComponent implements OnInit {
     const updatedVaccination: Vaccination = VaccinationFactory.fromObject(
       this.vaccinationForm.value
     );
+
+    updatedVaccination.time = this.vaccinationForm.value.time;
     //console.log(this.vaccinationForm.value.location_id);
     if (this.isUpdatingVaccination) {
       this.is.update(updatedVaccination).subscribe(res => {
