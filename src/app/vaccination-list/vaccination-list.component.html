@@ -41,11 +41,11 @@
 <br>
 
 <!--vaccination list header-->
-<div *ngIf="user?.isadmin == true">
+<div *ngIf="user?.isadmin == true || !authService.isLoggedIn() ">
   <h2>Akutelle Impftermine</h2>
 </div>
 
-<div *ngIf="user?.isadmin == false || !authService.isLoggedIn() ">
+<div *ngIf="user?.isadmin == false && authService.isLoggedIn()">
   <h2>Hier geht's zur Anmeldung</h2>
 </div>
 

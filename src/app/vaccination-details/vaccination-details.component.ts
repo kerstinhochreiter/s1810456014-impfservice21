@@ -62,10 +62,6 @@ export class VaccinationDetailsComponent implements OnInit {
   }
 
   addUserToVaccination() {
-    //let value = (<HTMLInputElement>e.target).value;
-    //console.log(user);
-    //this.user = user;
-    //const paramss = this.route.snapshot.params;
     this.user.vaccination_id = this.vaccination.id;
     this.is_user.update(this.user).subscribe(res => {});
   }

@@ -20,7 +20,7 @@
   </div>
 </div>
 <br>
-<div *ngFor="let user of vaccination.users">
+<div *ngFor="let user of vaccination?.users">
   <div *ngIf="checkMaxParticipants()" class="ui warning message">
     <i class="warning icon"></i>
     Es sind keine Plätze für diesen Termin frei
