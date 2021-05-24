@@ -1,5 +1,12 @@
-<h2>Impftermin hinzufügen</h2>
-<p>Fügen Sie einen Impftermin zu einem bestehenden Impfort hinzu: </p>
+<div *ngIf="!isUpdating()">
+  <h2>Impftermin hinzufügen</h2>
+  <p>Fügen Sie einen Impftermin zu einem bestehenden Impfort hinzu: </p>
+</div>
+
+<div *ngIf="isUpdating()">
+  <h2>Impftermin bearbeiten</h2>
+  <p>Bearbeiten Sie diesen bestehenden Impftermin: </p>
+</div>
 <br>
 <form class="ui large form" [formGroup]="vaccinationForm" (ngSubmit)="submitForm()">
 
@@ -45,6 +52,6 @@
 
   <button type="submit" class="ui teal right floated button"
 [disabled]="vaccinationForm.invalid">Speichern</button>
-  <button routerLink=".." class="ui gray right floated button">Abbrechen</button>
-
+  <button *ngIf="!isUpdating()" routerLink=".." class="ui gray right floated button">Abbrechen</button>
+  <button *ngIf="isUpdating()" routerLink="../../vaccinations" class="ui gray right floated button">Abbrechen</button>
 </form>

@@ -88,6 +88,14 @@ export class VaccinationFormComponent implements OnInit {
       }
     }
   }
+  //if a vaccination is updating or adding
+  isUpdating() {
+    if (this.isUpdatingVaccination) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   submitForm() {
     const updatedVaccination: Vaccination = VaccinationFactory.fromObject(
