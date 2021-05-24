@@ -88,11 +88,13 @@ export class VaccinationFormComponent implements OnInit {
       }
     }
   }
-  //if a vaccination is updating or adding
+  
   isUpdating() {
     if (this.isUpdatingVaccination) {
+      //updating
       return true;
     } else {
+      //adding
       return false;
     }
   }
