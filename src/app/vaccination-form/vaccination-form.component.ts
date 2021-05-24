@@ -16,7 +16,7 @@ import { DatePipe } from '@angular/common';
 export class VaccinationFormComponent implements OnInit {
   //@Input() locations: Location;
   locations: Location[];
-  location: Location[];
+  //location: Location[];
   id: number;
   vaccinationForm: FormGroup;
   selectedLocation: number;
@@ -31,8 +31,7 @@ export class VaccinationFormComponent implements OnInit {
     private is: VaccinationStoreService,
     private is_loc: LocationStoreService,
     private route: ActivatedRoute,
-    private router: Router,
-    private pipe: DatePipe
+    private router: Router
   ) {}
   ngOnInit() {
     this.is_loc.getAll().subscribe(res => (this.locations = res));
@@ -94,13 +93,7 @@ export class VaccinationFormComponent implements OnInit {
     const updatedVaccination: Vaccination = VaccinationFactory.fromObject(
       this.vaccinationForm.value
     );
-
-    /**this.is_loc
-      .getSingle(this.vaccinationForm.controls['id'].value)
-      .subscribe(res => {
-        updatedVaccination.location = res;
-      });**/
-    console.log(this.vaccinationForm.value.location_id);
+    //console.log(this.vaccinationForm.value.location_id);
     if (this.isUpdatingVaccination) {
       this.is.update(updatedVaccination).subscribe(res => {
         this.router.navigate(['../../vaccinations', updatedVaccination.id], {
