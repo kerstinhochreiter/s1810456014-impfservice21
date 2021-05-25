@@ -1,8 +1,10 @@
+<!--header for add vaccination-->
 <div *ngIf="!isUpdating()">
   <h2>Impftermin hinzufügen</h2>
   <p>Fügen Sie einen Impftermin zu einem bestehenden Impfort hinzu: </p>
 </div>
 
+<!--header for edit vaccination-->
 <div *ngIf="isUpdating()">
   <h2>Impftermin bearbeiten</h2>
   <p>Bearbeiten Sie diesen bestehenden Impftermin: </p>
@@ -10,8 +12,8 @@
 <br>
 <form class="ui large form" [formGroup]="vaccinationForm" (ngSubmit)="submitForm()">
 
+  <!--max_participants-->
   <input type="hidden" name="id">
-
   <div class="field">
     <label>Maximale Teilnehmeranzahl</label>
     <input formControlName="max_participants">
@@ -19,6 +21,7 @@
       errors.max_participants }}</div>
   </div>
 
+  <!--date-->
   <div class="field">
     <label>Datum</label>
     <input type="date" formControlName="date">
@@ -26,6 +29,8 @@
       errors.date }}</div>
   </div>
 
+  <!--time-->
+  <!--Annahme: es können mehrere Personen zu einem selben Zeitpunkt geimpft werden - mehrere Impfstraßen vorhanden-->
   <div class="field">
     <label>Uhrzeit</label>
     <input type="time" formControlName="time">
@@ -33,10 +38,7 @@
       errors.time }}</div>
   </div>
 
-
-  <!--(change)="selectChangeHandler($event)"-->
-  <!---->
-
+  <!--location-->
   <div class="field">
     <label>Ort</label>
     <select class="custom-select" formControlName="location_id"[(ngModel)]="selectedLocation" >
@@ -50,6 +52,7 @@
   </div>
   <br>
 
+  <!--submit or cancel-->
   <button type="submit" class="ui teal right floated button"
 [disabled]="vaccinationForm.invalid">Speichern</button>
   <button *ngIf="!isUpdating()" routerLink=".." class="ui gray right floated button">Abbrechen</button>

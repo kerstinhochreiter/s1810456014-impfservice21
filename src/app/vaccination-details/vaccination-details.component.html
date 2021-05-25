@@ -1,4 +1,6 @@
 <br>
+
+<!--vaccination details-->
 <div class="ui">
   <h2 class="ui left floated header">{{vaccination?.location.city}} | {{vaccination?.location.description}}</h2>
   <div class="ui left centered content">
@@ -20,16 +22,17 @@
   </div>
 </div>
 <br>
-<div *ngFor="let user of vaccination?.users">
+
+<!--cur user(s) of vaccination-->
+<div *ngFor="let user of vaccination.users">
   <div *ngIf="checkMaxParticipants()" class="ui warning message">
     <i class="warning icon"></i>
     Es sind keine Plätze für diesen Termin frei
-
   </div>
   <br>
 </div>
 <div *ngIf="user?.isadmin == true && authService.isLoggedIn()">
-  <div *ngIf="!vaccination?.users.length; else Show">
+  <div *ngIf="!vaccination?.users?.length; else Show">
     <div class="ui warning message">
       <div class="ui icon">
         <i class="users icon"></i>
@@ -43,7 +46,6 @@
     <table class="ui selectable celled table">
       <thead>
         <tr>
-          <!--<th>Geschlecht</th>-->
           <th>Name</th>
           <th>Geburtsdatum</th>
           <th>SVNR</th>
@@ -59,7 +61,7 @@
           <td data-label="Name">{{user?.firstname}} {{user?.lastname}}</td>
           <td data-label="Geburtsdatum">{{user?.birth | date:' dd.MM.yyyy'}}</td>
           <td data-label="SVNR">{{user?.svnr}}</td>
-          <td data-label="Wohnort">{{user?.street}} {{user?.number}}</td>
+          <td data-label="Wohnort">{{user?.u_plz}} {{user?.u_city}}, {{user?.street}} {{user?.number}}</td>
           <td data-label="Telefonnummer">+43 {{user?.phonenumber}}</td>
           <td data-label="E-Mail">{{user?.email}}</td>
           <td data-label="Impfung"><select formControlName="hasvaccination" class="ui selection dropdown" (change)="editVaccinationStatus($event, user)">
@@ -73,7 +75,7 @@
   </ng-template>
 </div>
 
-
+<!--if admin: delete/edit a vaccination-->
 <div *ngIf="user?.isadmin == true && authService.isLoggedIn()">
   <button class="ui right floated tiny gray labeled icon button" (click)="removeVaccination()">
   <i class="remove icon"></i>
@@ -84,6 +86,8 @@
     <i class="write icon"></i>
     Bearbeiten</button>
 </div>
+
+<!--if no admin: add/remove person to/from vaccination-->
 <div *ngIf="user?.isadmin == false && authService.isLoggedIn() && user?.vaccination_id == null">
   <button class="ui right floated teal tiny button" (click)="addUserToVaccination()">Impftermin buchen</button>
 </div>
@@ -100,6 +104,8 @@
   <button class="ui right floated teal tiny button" (click)="removeUserFromVaccination()">Registrierung stornieren</button>
 </div>
 
+
+<!--backlink-->
 <button routerLink=".." class="ui left floated labeled icon button tiny"><i class="left arrow icon"></i>Zurück zur Übersicht</button>
 
 <br>
