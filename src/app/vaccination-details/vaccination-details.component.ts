@@ -54,10 +54,10 @@ export class VaccinationDetailsComponent implements OnInit {
   }
 
   editVaccinationStatus(e: Event, user) {
-    let value = (<HTMLInputElement>e.target).value;
-    //console.log(user);
+    //aktuellen Status des Dropdowns auslesen
+    let curVacStatus = (<HTMLInputElement>e.target).value;
     this.user = user;
-    this.user.hasvaccination = Boolean(JSON.parse(value));
+    this.user.hasvaccination = Boolean(JSON.parse(curVacStatus));
     this.is_user.update(this.user).subscribe(res => {});
   }
 
