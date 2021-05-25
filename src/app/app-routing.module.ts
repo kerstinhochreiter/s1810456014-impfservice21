@@ -7,10 +7,15 @@ import { VaccinationFormComponent } from './vaccination-form/vaccination-form.co
 
 const routes: Routes = [
   { path: '', redirectTo: 'vaccinations', pathMatch: 'full' },
+  //vacc list
   { path: 'vaccinations', component: VaccinationListComponent },
+  //vacc detailpage
   { path: 'vaccinations/:id', component: VaccinationDetailsComponent },
+  //login
   { path: 'login', component: LoginComponent },
+  //add vacc
   { path: 'admin', component: VaccinationFormComponent },
+  //edit vacc
   { path: 'admin/:id', component: VaccinationFormComponent }
 ];
 
