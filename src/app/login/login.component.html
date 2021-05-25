@@ -25,7 +25,18 @@
   </form>
 </div>
 <div *ngIf="isLoggedIn()">
-
-  <h2 class="centered">Vielen Dank für Ihren Besuch!</h2>
-  <button type="button" class="ui tiny teal button" (click)="logout()">Logout</button>
+  <h3>Ihre Daten:</h3>
+  <p>{{user?.firstname}} {{user?.lastname}}<br>
+  {{user?.street}} {{user?.number}}<br>
+  {{user?.u_plz}} {{user?.u_city}}<br>
+  Geburtstdatum: {{user?.birth | date:' dd.MM.yyyy'}}<br>
+  SVNR: {{user?.svnr}}<br>
+  E-Mail: {{user?.email}}<br>
+  Telefonnummer: +43 {{user?.phonenumber}}</p>
+  <br>
+  <div *ngIf="user?.vaccination_id != null">
+    <a routerLink="../vaccinations/{{user?.vaccination_id}}" class="ui left floated teal tiny button">Zum
+      Impftermin</a>
+  </div>
+  <button type="button" class="ui left floated tiny gray button" (click)="logout()">Logout</button>
 </div>

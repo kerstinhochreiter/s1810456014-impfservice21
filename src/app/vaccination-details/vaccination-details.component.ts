@@ -55,24 +55,28 @@ export class VaccinationDetailsComponent implements OnInit {
 
   editVaccinationStatus(e: Event, user) {
     let value = (<HTMLInputElement>e.target).value;
-    console.log(user);
+    //console.log(user);
     this.user = user;
     this.user.hasvaccination = Boolean(JSON.parse(value));
     this.is_user.update(this.user).subscribe(res => {});
   }
 
   addUserToVaccination() {
-    this.user.vaccination_id = this.vaccination.id;
-    this.is_user.update(this.user).subscribe(res => {});
+    if (confirm('Wollen Sie sich wirklich zu diesem Impftermin anmelden?')) {
+      this.user.vaccination_id = this.vaccination.id;
+      this.is_user.update(this.user).subscribe(res => {});
+    }
   }
 
   removeUserFromVaccination() {
-    this.user.vaccination_id = null;
-    this.is_user.update(this.user).subscribe(res => {});
+    if (confirm('Wollen Sie sich wirklich ihren Impftermin stornieren?')) {
+      this.user.vaccination_id = null;
+      this.is_user.update(this.user).subscribe(res => {});
+    }
   }
 
   checkMaxParticipants() {
-    console.log(this.vaccination.max_participants);
+    //console.log(this.vaccination.max_participants);
     if (this.vaccination.users.length < this.vaccination.max_participants) {
       return false;
     }
