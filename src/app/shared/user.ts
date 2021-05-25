@@ -1,5 +1,5 @@
-import { Time } from "@angular/common";
-import { Vaccination } from "./vaccination";
+import { Time } from '@angular/common';
+import { Vaccination } from './vaccination';
 
 export class User {
   constructor(
@@ -10,6 +10,8 @@ export class User {
     public lastname: string,
     public street: string,
     public number: number,
+    public u_plz: number,
+    public u_city: string,
     public birth: Date,
     public phonenumber: number,
     public email: string,

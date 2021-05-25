@@ -73,7 +73,7 @@
   </ng-template>
 </div>
 
-<button routerLink=".." class="ui left floated labeled icon button tiny"><i class="left arrow icon"></i>Zurück zur Übersicht</button>
+
 <div *ngIf="user?.isadmin == true && authService.isLoggedIn()">
   <button class="ui right floated tiny gray labeled icon button" (click)="removeVaccination()">
   <i class="remove icon"></i>
@@ -85,11 +85,22 @@
     Bearbeiten</button>
 </div>
 <div *ngIf="user?.isadmin == false && authService.isLoggedIn() && user?.vaccination_id == null">
-  <button class="ui right floated teal tiny button" (click)="addUserToVaccination()">Zur Impfung anmelden</button>
+  <button class="ui right floated teal tiny button" (click)="addUserToVaccination()">Impftermin buchen</button>
 </div>
 <div *ngIf="user?.isadmin == false && authService.isLoggedIn() && user?.vaccination_id == vaccination.id">
-  <button class="ui right floated teal tiny button" (click)="removeUserFromVaccination()">Impfanmeldung stornieren</button>
+  <h3>Sie haben folgende Daten bekanntgegeben:</h3>
+  <p>{{user?.firstname}} {{user?.lastname}}<br>
+  {{user?.street}} {{user?.number}}<br>
+  {{user?.u_plz}} {{user?.u_city}}<br>
+  Geburtstdatum: {{user?.birth | date:' dd.MM.yyyy'}}<br>
+  SVNR: {{user?.svnr}}<br>
+  E-Mail: {{user?.email}}<br>
+  Telefonnummer: +43 {{user?.phonenumber}}</p>
+  <br>
+  <button class="ui right floated teal tiny button" (click)="removeUserFromVaccination()">Registrierung stornieren</button>
 </div>
+
+<button routerLink=".." class="ui left floated labeled icon button tiny"><i class="left arrow icon"></i>Zurück zur Übersicht</button>
 
 <br>
 <br>

@@ -12,6 +12,8 @@ export class UserFactory {
       '',
       '',
       0,
+      0,
+      '',
       new Date(),
       0,
       '',
@@ -32,6 +34,8 @@ export class UserFactory {
       rawUser.lastname,
       rawUser.street,
       rawUser.number,
+      rawUser.number,
+      rawUser.string,
       typeof rawUser.birth === 'string'
         ? new Date(rawUser.birth)
         : rawUser.birth,
