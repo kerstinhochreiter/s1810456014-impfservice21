@@ -88,7 +88,8 @@
 </div>
 
 <!--if no admin: add/remove person to/from vaccination-->
-<div *ngIf="user?.isadmin == false && authService.isLoggedIn() && user?.vaccination_id == null">
+<div
+  *ngIf="user?.isadmin == false && authService.isLoggedIn() && user?.vaccination_id == null && !checkMaxParticipants()">
   <button class="ui right floated teal tiny button" (click)="addUserToVaccination()">Impftermin buchen</button>
 </div>
 <div *ngIf="user?.isadmin == false && authService.isLoggedIn() && user?.vaccination_id == vaccination.id">
