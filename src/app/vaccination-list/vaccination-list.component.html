@@ -1,13 +1,13 @@
 <!--<div class="ui middle aligned selection divided list">-->
-<!--book wird hier als parameter übergeben für book-list-item-->
-<!--book wird hier als parameter übergeben für book-list-item-->
-<!--Liste gehen wir durch und in der booklist wollen wir Book-items, immer wenn wir komponenten schachteln wollen, wollen wir für jedes buch ein item anlegen und details anzeigen
+<!--vaccination wird hier als parameter übergeben für vaccination-list-item-->
+<!--Liste gehen wir durch und in der vaccinationlist wollen wir Vacc-items, immer wenn wir komponenten schachteln wollen, wollen wir für jede Vacc ein item anlegen und details anzeigen
   also wenn wir von einer kind-kompontente daten übergeben wollen
   jeder a-Tag wird dann durch die kind-komponente ersetzt durch klasse
-  @Input in der kind-komponente(book-details) teilt der kind-komponente mit dass sie das übergeben kann-->
-
+  @Input in der kind-komponente(vacc-details) teilt der kind-komponente mit dass sie das übergeben kann-->
 
 <br>
+
+<!--if logged in: privat information-->
 <div *ngIf="authService.isLoggedIn()">
   <h2>Herzlichen Willkommen {{user?.firstname}} {{user?.lastname}}</h2>
   <div *ngIf="user?.isadmin == true && authService.isLoggedIn()">
@@ -21,9 +21,9 @@
     <a routerLink="../vaccinations/{{user?.vaccination_id}}" class="ui teal tiny button">Zum
       Impftermin</a>
   </div>
-
-
 </div>
+
+<!--if not logged in: random information-->
 <div *ngIf="!authService.isLoggedIn()">
   <div class="ui grid">
     <div class="four wide column">
