@@ -13,9 +13,9 @@ const routes: Routes = [
   { path: 'vaccinations/:id', component: VaccinationDetailsComponent },
   //login
   { path: 'login', component: LoginComponent },
-  //add vacc
+  //if admin: add vacc
   { path: 'admin', component: VaccinationFormComponent },
-  //edit vacc
+  //if admin: edit vacc
   { path: 'admin/:id', component: VaccinationFormComponent }
 ];
 
