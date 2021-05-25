@@ -35,7 +35,7 @@ export class JwtInterceptorService implements HttpInterceptor {
 
               console.log('error');
 
-              alert('Invalid login');
+              alert('ACHTUNG: E-Mail oder Passwort ist falsch!');
             }
           }
         }

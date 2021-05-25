@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import jwt_decode from 'jwt-decode';
 import { retry } from 'rxjs/operators';
 
+//Daten vom Login werden in einem Token gespeichert, diese Token wird dann mitgesendet und das System checkt, ob er gültig ist
+
 interface Token {
   exp: number;
   user: {
@@ -22,27 +24,24 @@ export class AuthenticationService {
     });
   }
 
+  //speichert den JWT Token, sowie die aus dem Token extrahierte aktuelle UserID des eingeloggten Benutzers im local Storage
   public setLocalStorage(token: string) {
-    //console.log('Storing token');
-    //console.log(jwt_decode(token));
     const decodedToken = jwt_decode(token) as Token;
-    //console.log(decodedToken);
-    //console.log(decodedToken.user.id);
     localStorage.setItem('token', token);
     localStorage.setItem('id', decodedToken.user.id);
   }
+
+  //der entsprechende Token wird wieder im local Storage entfernt
   logout() {
     this.http.post(`${this.api}/logout`, {});
     localStorage.removeItem('token');
     localStorage.removeItem('id');
-    //localStorage.removeItem('isadmin');
     console.log('logged out');
   }
+
   public isLoggedIn() {
     if (localStorage.getItem('token')) {
       let token: string = localStorage.getItem('token');
-      //console.log(token);
-      //console.log(jwt_decode(token));
       const decodedToken = jwt_decode(token) as Token;
       let expirationDate: Date = new Date(0);
       expirationDate.setUTCSeconds(decodedToken.exp);
@@ -56,6 +55,7 @@ export class AuthenticationService {
       return false;
     }
   }
+
   isLoggedOut() {
     return !this.isLoggedIn();
   }
