@@ -41,7 +41,7 @@
   <!--location-->
   <div class="field">
     <label>Ort</label>
-    <select class="custom-select" formControlName="location_id"[(ngModel)]="selectedLocation" >
+    <select class="custom-select" formControlName="location_id" [(ngModel)]="selectedLocation" >
       <option *ngIf="!vaccinationForm.value.select" [ngValue]="null" selected disabled></option>
       <option *ngFor="let location of locations" [ngValue]="location.id">
       {{location?.description}} {{location.city}}</option>
